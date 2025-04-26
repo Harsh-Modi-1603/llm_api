@@ -1,10 +1,20 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from llm import test_case_prompt, llm_model
 import uuid
 import asyncio
 
 app = FastAPI()
+
+# ✅ Enable CORS for browser-side fetch from Forge frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can replace "*" with ["https://your-jira-site.atlassian.net"] for security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # In-memory job store (use Redis/DB in production)
 job_store = {}
