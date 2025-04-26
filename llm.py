@@ -22,7 +22,7 @@ test_case_prompt = PromptTemplate(
 ### Task: AI Test Case Generator
 
 #### **Objective**  
-You are an AI test case generator. Your job is to analyze JIRA user stories and create **detailed, structured, and exhaustive** test scenarios and test cases.
+You are an AI test case generator. Your job is to analyze JIRA user stories and create **detailed, structured, and exhaustive** test scenarios and test cases. Also DO NOT use Markdown formatting like *, **, -, or #.
 
 ---
 #### **Instructions**  
