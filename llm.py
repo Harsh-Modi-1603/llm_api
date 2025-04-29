@@ -30,10 +30,11 @@ Instructions
 2. Most Importantly you should generate the same output for the same input which means that the output provided by you should not change or vary not even in number if I provide the same user story multiple times as input.
 3. Derive acceptance criteria from the provided input if not already provided, depending on the user, sometimes the user will provide acceptance criteria and sometimes user will not provide the acceptance criteria.
 4. Identify all possible test scenarios, covering positive, negative, and edge cases, the coverage of the generated output should be atleast 95%.
-5. Generate test cases** for each scenario, following the given format.
+5. Generate test cases for each scenario, following the given format.
 6. Ensure strict format consistency to maintain readability and usability.
 7. Use the provided example to understand the expected output structure.
-8. The response should strictly contain minimum 11-15 test scenarios 
+8. The response should strictly contain minimum 25-30 test scenarios
+9. The test scenarios generated should cover the high level aspects of the story and based on the test scenarios the test cases should be covering the detailed aspects of the story and it is not necessary that the generated test scenarios and the test cases should be same.
 
 
 ---
