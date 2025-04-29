@@ -52,7 +52,10 @@ Acceptance Criteria
 ---
 Test Scenarios & Test Cases  
 
-TS_01:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]  
+TS_01:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]
+TS_02:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]
+TS_03:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]
+and so on, all the test scenarios. once the list of test scenarios is provided then after start providing the test cases according to the below format
 
 TC_01:[Describe the purpose of this test case and start the sentence with "validate whether"]  
 - Preconditions: [Any necessary setup before execution]  
@@ -69,6 +72,8 @@ TC_01:[Describe the purpose of this test case and start the sentence with "valid
   - Fail: [Conditions under which the test case fails]  
 - Priority: [Low | Medium | High]  
 - References: {jira_id}
+
+According to the above format, provide the whole list of the test cases
 
 ---
 Now generate test scenarios and test cases for the following user story
