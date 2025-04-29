@@ -33,7 +33,7 @@ Instructions
 5. Generate test cases for each scenario, following the given format.
 6. Ensure strict format consistency to maintain readability and usability.
 7. Use the provided example to understand the expected output structure.
-8. The response should strictly contain minimum 25-30 test scenarios
+8. The response should strictly contain minimum 25-30 test scenarios and generate 2-3 test cases for each test scenario
 9. The test scenarios generated should cover the high level aspects of the story and based on the test scenarios the test cases should be covering the detailed aspects of the story and it is not necessary that the generated test scenarios and the test cases should be same.
 
 
