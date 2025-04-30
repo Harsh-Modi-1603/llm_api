@@ -1,23 +1,24 @@
+# llm_chat.py
+
 import os
 import json
-from langchain.prompts import ChatPromptTemplate
+from google.oauth2 import service_account
 from langchain_google_genai import ChatGoogleGenerativeAI
-from llm import test_case_prompt  # Reuse the prompt
+from langchain.prompts import ChatPromptTemplate
+from llm import test_case_prompt
 
-# 🔐 Load service account credentials from environment variable
-credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
-if not credentials_json:
-    raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS_JSON environment variable is missing.")
+# ✅ Load credentials from env var
+credentials_info = json.loads(os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"])
+credentials = service_account.Credentials.from_service_account_info(credentials_info)
 
-credentials_dict = json.loads(credentials_json)
-
-# 🔁 Initialize Gemini LLM (chat-capable)
+# ✅ Use Gemini with credentials
 llm_model = ChatGoogleGenerativeAI(
     model="gemini-pro",
-    credentials=credentials_dict
+    credentials=credentials,
+    convert_system_message_to_human=True
 )
 
-# 🧪 Prompt for test case generation
+# Test case generation prompt
 def generate_prompt(user_story, jira_id, acceptance_criteria=""):
     return test_case_prompt.format(
         user_story=user_story,
@@ -25,13 +26,13 @@ def generate_prompt(user_story, jira_id, acceptance_criteria=""):
         acceptance_criteria=acceptance_criteria
     )
 
-# 🚀 Generate test cases using chat-compatible model
+# 🔁 Generate test cases using Gemini chat model
 async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_criteria=""):
     prompt = generate_prompt(user_story, jira_id, acceptance_criteria)
     result = await llm_model.ainvoke(prompt)
     return result.content
 
-# 💬 Interactive chat support
+# 💬 Handle generic chat messages
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a helpful assistant specialized in software testing."),
     ("human", "{question}")
@@ -39,5 +40,5 @@ chat_prompt = ChatPromptTemplate.from_messages([
 
 async def chat_with_llm(question: str):
     prompt = chat_prompt.format_messages(question=question)
-    result = await llm_model.ainvoke(prompt)
-    return result.content
+    response = await llm_model.ainvoke(prompt)
+    return response.content
