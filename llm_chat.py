@@ -1,5 +1,3 @@
-# llm_chat.py
-
 import os
 import json
 import tempfile
@@ -9,24 +7,22 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from llm import test_case_prompt
 
-if os.getenv("GOOGLE_CREDENTIALS_BASE64"):
+# ✅ Decode base64 service account JSON
+if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
     decoded_json = base64.b64decode(os.environ["GOOGLE_CREDENTIALS_BASE64"])
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
-        tmp.write(decoded_json)
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp.name
+    credentials_info = json.loads(decoded_json)
+    credentials = service_account.Credentials.from_service_account_info(credentials_info)
+else:
+    raise EnvironmentError("Missing GOOGLE_CREDENTIALS_BASE64 environment variable.")
 
-# ✅ Load credentials from env var
-credentials_info = json.loads(os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"])
-credentials = service_account.Credentials.from_service_account_info(credentials_info)
-
-# ✅ Use Gemini with credentials
+# ✅ Initialize Gemini LLM model
 llm_model = ChatGoogleGenerativeAI(
     model="gemini-pro",
     credentials=credentials,
     convert_system_message_to_human=True
 )
 
-# Test case generation prompt
+# ✅ Format prompt
 def generate_prompt(user_story, jira_id, acceptance_criteria=""):
     return test_case_prompt.format(
         user_story=user_story,
@@ -34,18 +30,19 @@ def generate_prompt(user_story, jira_id, acceptance_criteria=""):
         acceptance_criteria=acceptance_criteria
     )
 
-# 🔁 Generate test cases using Gemini chat model
+# ✅ Generate test cases
 async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_criteria=""):
     prompt = generate_prompt(user_story, jira_id, acceptance_criteria)
     result = await llm_model.ainvoke(prompt)
     return result.content
 
-# 💬 Handle generic chat messages
+# ✅ Chat support prompt
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a helpful assistant specialized in software testing."),
     ("human", "{question}")
 ])
 
+# ✅ Chat response function
 async def chat_with_llm(question: str):
     prompt = chat_prompt.format_messages(question=question)
     response = await llm_model.ainvoke(prompt)
