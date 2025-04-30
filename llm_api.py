@@ -7,7 +7,7 @@ import asyncio
 
 app = FastAPI()
 
-# ✅ Enable CORS for browser-side fetch from Forge frontend
+# Enable CORS for browser-side fetch from Forge frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # You can replace "*" with ["https://your-jira-site.atlassian.net"] for security

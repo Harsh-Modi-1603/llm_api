@@ -1,32 +1,28 @@
 # chat_api.py
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from llm_chat import generate_test_cases_with_chat_model, chat_with_llm
 
 app = FastAPI()
 
-
-# Model for generating test cases
+# Request model for test case generation
 class GenerationRequest(BaseModel):
     user_story: str
     jira_id: str
     acceptance_criteria: str = ""
 
-
-# Model for chat messages
+# Request model for chat
 class ChatRequest(BaseModel):
     message: str
-
 
 @app.get("/")
 def root():
     return {"message": "LLM Chat API is live"}
 
-
 @app.post("/chat-generate")
 async def generate_chat_test_cases(data: GenerationRequest):
-    if not data.user_story or not data.jira_id:
+    if not data.user_story.strip() or not data.jira_id.strip():
         return {"error": "Missing required fields: user_story and jira_id"}
 
     try:
@@ -39,10 +35,9 @@ async def generate_chat_test_cases(data: GenerationRequest):
     except Exception as e:
         return {"error": f"Test case generation failed: {str(e)}"}
 
-
 @app.post("/chat")
 async def chat(data: ChatRequest):
-    if not data.message:
+    if not data.message.strip():
         return {"error": "No chat message provided"}
 
     try:
