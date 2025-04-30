@@ -2,10 +2,18 @@
 
 import os
 import json
+import tempfile
+import base64
 from google.oauth2 import service_account
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from llm import test_case_prompt
+
+if os.getenv("GOOGLE_CREDENTIALS_BASE64"):
+    decoded_json = base64.b64decode(os.environ["GOOGLE_CREDENTIALS_BASE64"])
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
+        tmp.write(decoded_json)
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp.name
 
 # ✅ Load credentials from env var
 credentials_info = json.loads(os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"])
