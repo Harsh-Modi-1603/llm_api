@@ -34,7 +34,14 @@ Instructions
 6. Ensure strict format consistency to maintain readability and usability.
 7. Use the provided example to understand the expected output structure.
 8. The response should strictly contain minimum 25-30 test scenarios and generate 2-3 test cases for each test scenario
-9. The test scenarios generated should cover the high level aspects of the story and based on the test scenarios the test cases should be covering the detailed aspects of the story and it is not necessary that the generated test scenarios and the test cases should be same.
+9. The test scenarios and test cases should be different, like the following example:
+   - Test Scenario 1: Validate whether the login functionality works as expected.
+    - Test Case 1: Validate whether the user can log in with valid username and valid password.
+    - Test Case 2: Validate whether the user cannot log in with invalid username and valid password.
+    - Test Case 3: Validate whether the user cannot log in with valid username and invalid password.
+    - Test Case 4: Validate whether the user cannot log in with invalid username and invalid password.
+    and so on with detailed test cases covering all the aspects of the test scenario.
+10. The test scenarios generated should cover the high level aspects of the story and based on the test scenarios the test cases should be covering the detailed aspects of the story and it is not necessary that the generated test scenarios and the test cases should be same.
 
 
 ---
