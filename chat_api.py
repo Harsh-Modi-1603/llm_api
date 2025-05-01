@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from llm_chat import (
     generate_test_cases_with_chat_model,
@@ -8,8 +9,16 @@ from llm_chat import (
 
 app = FastAPI()
 
+# ✅ Allow CORS for any origin (or restrict to your Forge domain for production)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can replace "*" with ["https://your-forge-site.atlassian.net"] for stricter security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Request models
+# ✅ Request models
 class GenerationRequest(BaseModel):
     user_story: str
     jira_id: str
@@ -17,7 +26,7 @@ class GenerationRequest(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str
-    jira_id: str  # required to preserve session
+    jira_id: str
 
 
 @app.get("/")
