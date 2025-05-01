@@ -8,7 +8,7 @@ load_dotenv()
 
 llm_model = ChatGoogleGenerativeAI(
     api_key=os.getenv("gemini_api_key_2"),
-    model="gemma-3-27b-it",
+    model="gemini-2.5-flash-preview-04-17",
     temperature=0.7,
     max_tokens=None,
     timeout=None,
@@ -53,12 +53,12 @@ Acceptance Criteria
 ---
 Test Scenarios & Test Cases  
 
-TS_01:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]
-TS_02:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]
-TS_03:[Describe the purpose of testing this scenario and start the sentence with "validate whether"]
+TS_01:[Describe the purpose of testing this scenario and start the sentence with "Validate whether"]
+TS_02:[Describe the purpose of testing this scenario and start the sentence with "Validate whether"]
+TS_03:[Describe the purpose of testing this scenario and start the sentence with "Validate whether"]
 and so on, all the test scenarios. once the list of test scenarios is provided then after start providing the test cases according to the below format
 
-TC_01:[Describe the purpose of this test case and start the sentence with "validate whether"]  
+TC_01:[Describe the purpose of this test case and start the sentence with "Validate whether"]  
 - Preconditions: [Any necessary setup before execution]  
 - Test Data: [Example test data if applicable, with the disclaimer "The test data is just for guidance and the actual test data is to be determined by the user."]  
 - Test Execution Steps:  
