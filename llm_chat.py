@@ -15,7 +15,7 @@ credentials = service_account.Credentials.from_service_account_info(credentials_
 
 # Setup Gemini chat model with memory
 llm_model = ChatGoogleGenerativeAI(
-    model="gemini-1.5-pro",
+    model="gemini-2.5-flash-preview-04-17",
     credentials=credentials,
     convert_system_message_to_human=True
 )
