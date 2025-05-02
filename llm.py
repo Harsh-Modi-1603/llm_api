@@ -30,19 +30,16 @@ Instructions
 2. Ensure that the output is deterministic, meaning the same input should always produce the same output without variation.
 3. Derive acceptance criteria from the provided input if not already provided. If acceptance criteria are provided, use them as-is.
 4. Clearly differentiate between **test scenarios** and **test cases**:
-   - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality and should not include detailed steps or data.
-   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases. Test cases should include preconditions, test data, execution steps, expected outcomes, and pass/fail criteria.
+   - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality and should not include detailed steps, test data, or expected outcomes.
+   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases. Test cases must include preconditions, test data, execution steps, expected outcomes, and pass/fail criteria.
 5. Ensure the generated output covers at least 95% of possible test scenarios and test cases.
 6. Maintain strict format consistency for readability and usability.
 7. Use the provided example to understand the expected output structure.
 8. Generate an appropriate number of test scenarios and test cases based on the story description.
-9. Test scenarios and test cases should be distinct. For example:
-   - Test Scenario: Validate whether the login functionality works as expected.
-   - Test Cases:
-     - Validate whether the user can log in with valid credentials.
-     - Validate whether the user cannot log in with invalid credentials.
-     - Validate whether the user cannot log in with empty fields.
-10. Avoid redundancy between test scenarios and test cases. Test scenarios should describe "what" needs to be tested, while test cases should describe "how" to test it.
+9. Test scenarios and test cases must be distinct:
+   - Test scenarios should describe **what** needs to be tested (e.g., "Validate whether the login functionality works as expected").
+   - Test cases should describe **how** to test it (e.g., "Validate whether the user can log in with valid credentials").
+10. Avoid redundancy between test scenarios and test cases. Test scenarios should not include detailed steps or outcomes, while test cases should not repeat the high-level descriptions of test scenarios.
 11. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
 
 ---
@@ -71,7 +68,7 @@ Test Cases
 
 TC-01: Validate whether [Detailed description of the test case].  
 - Preconditions: [Any necessary setup before execution]  
-- Test Data: [Example test data if applicable, with the disclaimer "The test data is just for guidance and the actual test data is to be determined by the user."]  
+- Test Data: [Example test data if applicable]  
 - Test Execution Steps:  
   1. Step 1  
   2. Step 2  
@@ -105,5 +102,6 @@ Response Format Requirements
 5. Strictly follow the example format for readability and consistency.  
 6. Avoid unnecessary explanations—output should be directly usable by QA engineers.  
 7. Ensure the test scenarios and test cases are distinct and exhaustive, covering all possible aspects of the user story.
+8. Test scenarios must not include detailed steps, test data, or expected outcomes. Test cases must not repeat the high-level descriptions of test scenarios.
 """
 )
