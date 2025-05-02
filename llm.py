@@ -31,23 +31,17 @@ Instructions
 3. Derive acceptance criteria from the provided input if not already provided. If acceptance criteria are provided, use them as-is.
 4. Clearly differentiate between **test scenarios** and **test cases**:
    - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality.
-   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 3-5 test cases covering positive, negative, edge, and boundary cases.
-5. Ensure the generated output covers **100% of possible test scenarios and test cases** wherever feasible. This includes:
-   - Functional cases
-   - Edge cases
-   - Negative cases
-   - Boundary cases
+   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases.
+5. Ensure the generated output covers at least 95% of possible test scenarios and test cases.
 6. Maintain strict format consistency for readability and usability.
 7. Use the provided example to understand the expected output structure.
-8. The response should include a minimum of 30-40 test scenarios and 3-5 test cases per scenario, depending on the complexity of the user story.
+8. The response should include a minimum of 25-30 test scenarios and 2-3 test cases per scenario.
 9. Test scenarios and test cases should be distinct. For example:
    - Test Scenario: Validate whether the login functionality works as expected.
    - Test Cases:
      - Validate whether the user can log in with valid credentials.
      - Validate whether the user cannot log in with invalid credentials.
      - Validate whether the user cannot log in with empty fields.
-     - Validate whether the user cannot log in after multiple failed attempts.
-     - Validate whether the user session expires after inactivity.
 10. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
 
 ---
@@ -105,8 +99,8 @@ Expected Acceptance Criteria
 Response Format Requirements  
 1. Maintain structure exactly as shown above.  
 2. Provide all test scenarios first, followed by test cases.  
-3. Include a minimum of 30-40 test scenarios covering different cases depending on the user story.  
-4. Generate 3-5 detailed test cases per scenario.  
+3. Include a minimum of 25-30 test scenarios covering different cases depending on the user story.  
+4. Generate 2-3 detailed test cases per scenario.  
 5. Strictly follow the example format for readability and consistency.  
 6. Avoid unnecessary explanations—output should be directly usable by QA engineers.  
 7. Ensure the test scenarios and test cases are distinct and exhaustive, covering all possible aspects of the user story.
