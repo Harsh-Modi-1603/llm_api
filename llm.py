@@ -30,35 +30,20 @@ Instructions
 2. Ensure that the output is deterministic, meaning the same input should always produce the same output without variation.
 3. Derive acceptance criteria from the provided input if not already provided. If acceptance criteria are provided, use them as-is.
 4. Clearly differentiate between **test scenarios** and **test cases**:
-   - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality.
-   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases.
+   - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality and should not include detailed steps or data.
+   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases. Test cases should include preconditions, test data, execution steps, expected outcomes, and pass/fail criteria.
 5. Ensure the generated output covers at least 95% of possible test scenarios and test cases.
 6. Maintain strict format consistency for readability and usability.
 7. Use the provided example to understand the expected output structure.
-8. Generate appropriate amount of test scenarios and test cases based on the story description
+8. Generate an appropriate number of test scenarios and test cases based on the story description.
 9. Test scenarios and test cases should be distinct. For example:
    - Test Scenario: Validate whether the login functionality works as expected.
    - Test Cases:
      - Validate whether the user can log in with valid credentials.
      - Validate whether the user cannot log in with invalid credentials.
      - Validate whether the user cannot log in with empty fields.
-11. Don't provide test scenarios and test cases like below:
-    - Test Scenario: Validate whether the login functionality works as expected.
-    - Test Case: Validate whether the user can log in to the system
-      - Preconditions: User is on the login page.
-      - Test Data: Valid username and password.
-      - Test Execution Steps:
-        1. Open the login page.
-        2. Enter valid username and password.
-        3. Click on the login button.
-        4. Verify that the user is redirected to the dashboard.
-        5. Verify that the welcome message is displayed.
-        - Expected Outcome: User is logged in successfully.
-        - Pass/Fail Criteria:
-          - Pass: User is redirected to the dashboard.
-          - Fail: User remains on the login page.
-        - Priority: High    
-10. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
+10. Avoid redundancy between test scenarios and test cases. Test scenarios should describe "what" needs to be tested, while test cases should describe "how" to test it.
+11. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
 
 ---
 Example Output Format
