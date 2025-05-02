@@ -42,6 +42,22 @@ Instructions
      - Validate whether the user can log in with valid credentials.
      - Validate whether the user cannot log in with invalid credentials.
      - Validate whether the user cannot log in with empty fields.
+11. Don't provide test scenarios and test cases like below:
+    - Test Scenario: Validate whether the login functionality works as expected.
+    - Test Case: Validate whether the user can log in to the system
+      - Preconditions: User is on the login page.
+      - Test Data: Valid username and password.
+      - Test Execution Steps:
+        1. Open the login page.
+        2. Enter valid username and password.
+        3. Click on the login button.
+        4. Verify that the user is redirected to the dashboard.
+        5. Verify that the welcome message is displayed.
+        - Expected Outcome: User is logged in successfully.
+        - Pass/Fail Criteria:
+          - Pass: User is redirected to the dashboard.
+          - Fail: User remains on the login page.
+        - Priority: High    
 10. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
 
 ---
