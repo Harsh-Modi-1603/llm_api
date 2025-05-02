@@ -32,30 +32,23 @@ Instructions
 4. Clearly differentiate between **test scenarios** and **test cases**:
    - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality and should not include detailed steps, test data, or expected outcomes.
    - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases. Test cases must include preconditions, test data, execution steps, expected outcomes, and pass/fail criteria.
-5. Ensure the generated output covers at least 95% of possible test scenarios and test cases.
-6. Maintain strict format consistency for readability and usability.
-7. Use the provided example to understand the expected output structure.
-8. Generate an appropriate number of test scenarios and test cases based on the story description.
-9. Test scenarios and test cases must be distinct:
+5. Test scenarios and test cases must be distinct:
    - Test scenarios should describe **what** needs to be tested (e.g., "Validate whether the login functionality works as expected").
    - Test cases should describe **how** to test it (e.g., "Validate whether the user can log in with valid credentials").
-10. Avoid redundancy between test scenarios and test cases. Test scenarios should not include detailed steps or outcomes, while test cases should not repeat the high-level descriptions of test scenarios.
-11. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
+6. Avoid redundancy between test scenarios and test cases. Test scenarios should not include detailed steps or outcomes, while test cases should not repeat the high-level descriptions of test scenarios.
+7. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
 
 ---
-Example Output Format
+Output Format  
 (Use this exact format in your response)
 
----
 User Story  
 Story Title [Extracted from JIRA]  
-Description [Extracted from JIRA]  
 JIRA Issue ID {jira_id}  
 
 Acceptance Criteria  
 {acceptance_criteria}
 
----
 Test Scenarios  
 
 TS-01: Validate whether [High-level description of the scenario].  
@@ -63,7 +56,6 @@ TS-02: Validate whether [High-level description of the scenario].
 TS-03: Validate whether [High-level description of the scenario].  
 ...continue listing all test scenarios...
 
----
 Test Cases  
 
 TC-01: Validate whether [Detailed description of the test case].  
@@ -91,17 +83,6 @@ User Story
 JIRA Issue ID {jira_id}  
 
 Expected Acceptance Criteria  
-{acceptance_criteria}  
-
----
-Response Format Requirements  
-1. Maintain structure exactly as shown above.  
-2. Provide all test scenarios first, followed by test cases.  
-3. Include a minimum of 25-30 test scenarios covering different cases depending on the user story.  
-4. Generate 2-3 detailed test cases per scenario.  
-5. Strictly follow the example format for readability and consistency.  
-6. Avoid unnecessary explanations—output should be directly usable by QA engineers.  
-7. Ensure the test scenarios and test cases are distinct and exhaustive, covering all possible aspects of the user story.
-8. Test scenarios must not include detailed steps, test data, or expected outcomes. Test cases must not repeat the high-level descriptions of test scenarios.
+{acceptance_criteria}
 """
 )
