@@ -35,7 +35,7 @@ Instructions
 5. Ensure the generated output covers at least 95% of possible test scenarios and test cases.
 6. Maintain strict format consistency for readability and usability.
 7. Use the provided example to understand the expected output structure.
-8. The response should include a minimum of 25-30 test scenarios and 2-3 test cases per scenario.
+8. Generate appropriate amount of test scenarios and test cases based on the story description
 9. Test scenarios and test cases should be distinct. For example:
    - Test Scenario: Validate whether the login functionality works as expected.
    - Test Cases:
