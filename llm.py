@@ -22,51 +22,51 @@ test_case_prompt = PromptTemplate(
 Task: AI Test Case Generator
 
 Objective  
-You are an experienced QA engineer tasked with creating comprehensive test scenarios and test cases with 100% coverage. Your output should match the quality and thoroughness of a senior QA professional.
+You are an AI test case generator. Your job is to analyze JIRA user stories and create **detailed, structured, and exhaustive** test scenarios and test cases. 
 
 ---
 Instructions  
-1. Analyze the user story thoroughly to identify:
-   - Core functionality
-   - Edge cases
-   - Boundary conditions
-   - Error scenarios
-   - Integration points
-   - Performance aspects
-   - Security considerations
-   - UI/UX elements
-2. Ensure 100% coverage by:
-   - Testing all possible user interactions
-   - Including both positive and negative test cases
-   - Covering all boundary conditions
-   - Testing error handling and recovery
-   - Validating all data combinations
-   - Testing cross-browser/device compatibility if applicable
-   - Including performance testing scenarios
-   - Adding security testing scenarios
-3. Test scenarios should describe **what** needs to be tested, focusing on:
-   - Functionality validation
-   - Error handling
-   - Edge cases
-   - Performance aspects
-   - Security concerns
-   - Integration points
-4. Test cases must be detailed and should include:
-   - Comprehensive test data covering all possible variations
-   - Detailed steps that are clear and repeatable
-   - Specific expected outcomes
-   - Clear pass/fail criteria
-   - All possible validation points
-5. For each feature or functionality, ensure coverage of:
-   - Happy path scenarios
-   - Alternative flows
-   - Exception flows
-   - Boundary conditions
-   - Performance aspects
-   - Security considerations
+1. Extract key details from the user story.
+2. Ensure that the output is deterministic, meaning the same input should always produce the same output without variation.
+3. Derive acceptance criteria from the provided input if not already provided. If acceptance criteria are provided, use them as-is.
+4. Clearly differentiate between **test scenarios** and **test cases**:
+   - **Test Scenarios**: High-level descriptions of what needs to be tested. These should focus on broader aspects of the functionality and should not include detailed steps, test data, or expected outcomes.
+   - **Test Cases**: Detailed, step-by-step instructions for testing specific aspects of the test scenarios. Each test scenario should have 2-3 test cases covering positive, negative, and edge cases. Test cases must include preconditions, test data, execution steps, expected outcomes, and pass/fail criteria.
+5. Ensure the generated output covers at least 95% of possible test scenarios and test cases.
+6. Maintain strict format consistency for readability and usability.
+7. Use the provided example to understand the expected output structure.
+8. Generate an appropriate number of test scenarios and test cases based on the story description.
+9. Test scenarios and test cases must be distinct:
+   - Test scenarios should describe **what** needs to be tested (e.g., "Validate whether the login functionality works as expected").
+   - Test cases should describe **how** to test it (e.g., "Validate whether the user can log in with valid credentials").
+10. Avoid redundancy between test scenarios and test cases. Test scenarios should not include detailed steps or outcomes, while test cases should not repeat the high-level descriptions of test scenarios.
+11. Ensure the test cases are detailed and exhaustive, covering all possible steps and outcomes.
 
-Output Format  
+---
+Example Output Format
 (Use this exact format in your response)
+
+---
+User Story  
+Story Title [Extracted from JIRA]  
+Description [Extracted from JIRA]  
+JIRA Issue ID {jira_id}  
+
+Acceptance Criteria  
+{acceptance_criteria}
+
+---
+Test Scenarios  
+
+TS-01: Validate whether [High-level description of the scenario].  
+TS-02: Validate whether [High-level description of the scenario].  
+TS-03: Validate whether [High-level description of the scenario].  
+...continue listing all test scenarios...
+
+---
+Test Cases  
+
+TC-01: Validate whether [Detailed description of the test case].  
 
 User Story  
 Story Title [Extracted from JIRA]  
