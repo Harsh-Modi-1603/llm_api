@@ -7,7 +7,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from llm import test_case_prompt
 
-# ✅ Credential setup
+
 if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
     decoded_json = base64.b64decode(os.environ["GOOGLE_CREDENTIALS_BASE64"])
     credentials_info = json.loads(decoded_json)
@@ -15,18 +15,18 @@ if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
 else:
     raise EnvironmentError("Missing GOOGLE_CREDENTIALS_BASE64 environment variable.")
 
-# ✅ Instantiate Gemini LLM
+
 llm_model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash-preview-04-17",
     credentials=credentials,
     convert_system_message_to_human=True
 )
 
-# ✅ Memory store for context per JIRA ID
+
 memory_store: Dict[str, List[Dict[str, str]]] = {}
 
 
-# ✅ Initial test case generation and storing context
+
 async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_criteria=""):
     prompt = test_case_prompt.format(
         user_story=user_story,
@@ -43,7 +43,7 @@ async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_cr
     return result.content
 
 
-# ✅ Chat interaction with preserved context
+
 async def chat_with_contextual_llm(jira_id: str, message: str) -> str:
     if jira_id not in memory_store:
         memory_store[jira_id] = [
