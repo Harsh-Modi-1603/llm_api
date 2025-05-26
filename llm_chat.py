@@ -4,6 +4,9 @@ import base64
 from typing import Dict, List
 from google.oauth2 import service_account
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.prompts import ChatPromptTemplate
+from llm import test_case_prompt
+
 
 if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
     decoded_json = base64.b64decode(os.environ["GOOGLE_CREDENTIALS_BASE64"])
@@ -12,50 +15,48 @@ if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
 else:
     raise EnvironmentError("Missing GOOGLE_CREDENTIALS_BASE64 environment variable.")
 
+
 llm_model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash-preview-04-17",
-    temperature=0.3,
-    top_p=0.8,
-    max_output_tokens=700,
     credentials=credentials,
+    convert_system_message_to_human=True
 )
 
-# In-memory chat history memory store: jira_id -> messages array
+
 memory_store: Dict[str, List[Dict[str, str]]] = {}
 
-def handler(request):
-    """
-    Expected POST JSON:
-    {
-      "jira_id": "ISSUE-123",
-      "messages": [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Hi, please generate test cases..."},
-        ...
-      ]
-    }
-    """
-    try:
-        req_json = request.json()
-        jira_id = req_json.get("jira_id", "")
-        messages = req_json.get("messages", [])
 
-        if not jira_id:
-            return {"error": "Missing jira_id."}
 
-        if not isinstance(messages, list) or not all('role' in m and 'content' in m for m in messages):
-            return {"error": "Invalid messages format."}
+async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_criteria=""):
+    prompt = test_case_prompt.format(
+        user_story=user_story,
+        jira_id=jira_id,
+        acceptance_criteria=acceptance_criteria
+    )
+    result = await llm_model.ainvoke(prompt)
+    
+    memory_store[jira_id] = [
+        {"role": "system", "content": "You are a helpful assistant specialized in software testing."},
+        {"role": "user", "content": prompt},
+        {"role": "ai", "content": result.content}
+    ]
+    return result.content
 
-        # Update in-memory memory store for jira_id
-        memory_store[jira_id] = messages
 
-        # Call the LLM with the full conversation
-        response = llm_model(messages=messages)
 
-        # Gemini returns dict with 'content'
-        ai_response = response.get('content', '') if isinstance(response, dict) else str(response)
+async def chat_with_contextual_llm(jira_id: str, message: str) -> str:
+    if jira_id not in memory_store:
+        memory_store[jira_id] = [
+            {"role": "system", "content": "You are a helpful assistant specialized in software testing."}
+        ]
 
-        return {"response": ai_response}
+    # Append new user message to context
+    memory_store[jira_id].append({"role": "user", "content": message})
 
-    except Exception as e:
-        return {"error": str(e)}
+    # Invoke Gemini with full context
+    response = await llm_model.ainvoke(memory_store[jira_id])
+
+    # Add model's response to memory
+    memory_store[jira_id].append({"role": "ai", "content": response.content})
+
+    return response.content
