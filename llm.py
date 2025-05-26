@@ -84,22 +84,23 @@ TS-02: Validate whether [High-level description of the scenario].
 TS-03: Validate whether [High-level description of the scenario].  
 ...continue listing all test scenarios...
 
+Test Cases  
 
-Generate test cases for the following user story and acceptance criteria.
-Return the output as a JSON array, where each test case has the following keys:
-
-Heres the required output format in json:
-
-  
-    Test Case ID: TC_01,
-    Description: Validate search with valid origin and destination returns flights.,
-    Preconditions: User is on the flight search page.,
-    Test Data: Origin: JFK, Destination: LAX, Departure Date: Tomorrow,
-    Test Execution Steps: 1. Enter origin. 2. Enter destination. 3. Select date. 4. Click search.,
-    Expected Outcome: List of available flights is displayed.,
-    Pass/Fail Criteria: Pass if flights are displayed; Fail if error shown or empty list.,
-    Priority: High,
-    References: {jira_id}
+TC-01: Validate whether [Detailed description of the test case].  
+- Preconditions: [Any necessary setup before execution]  
+- Test Data: [Example test data if applicable]  
+- Test Execution Steps:  
+  1. Step 1  
+  2. Step 2  
+  3. Step 3  
+  4. Step 4  
+  5. Provide as many steps as possible by carefully analyzing the test case.
+- Expected Outcome: [Define the expected results]  
+- Pass/Fail Criteria:  
+  - Pass: [Conditions under which the test case passes]  
+  - Fail: [Conditions under which the test case fails]
+- Priority: [Low | Medium | High]  
+- References: {jira_id}
 
 ---
 Now generate test scenarios and test cases for the following user story
