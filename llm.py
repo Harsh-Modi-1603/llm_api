@@ -85,14 +85,14 @@ TS-02: Validate whether [High-level description of the scenario].
 Test Cases (JSON Format)
 
 [
-  {
+  {{
     "Test Case ID": "TC-01",
     "Title": "Validate whether the user can login with valid credentials",
     "Preconditions": "User must be registered and activated",
-    "Test Data": {
+    "Test Data": {{
       "username": "validuser@example.com",
       "password": "validPassword123"
-    },
+    }},
     "Test Execution Steps": [
       "Navigate to login page",
       "Enter valid email",
@@ -104,12 +104,12 @@ Test Cases (JSON Format)
     "Fail Criteria": "User is not logged in or sees an error",
     "Priority": "High",
     "References": "{jira_id}"
-  },
-  {
+  }},
+  {{
     "Test Case ID": "TC-02",
     "Title": "...",
     ...
-  }
+  }}
 ]
 ---
 
