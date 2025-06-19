@@ -44,7 +44,7 @@ Instructions
    - Edge cases
 4. Test cases must be detailed and should include:
    - Comprehensive test data covering all possible variations
-   - Detailed steps that are clear and repeatable (4-5 steps max)
+   - Detailed steps that are clear and repeatable(4-5 steps max)
    - Specific expected outcomes
    - Clear pass/fail criteria
    - All possible validation points
@@ -65,6 +65,7 @@ Instructions
 8. Generate a minimum of 20-30 unique test scenarios and 40-60 functional test cases.
 9. Ensure the output is consistent for the same input (same count, wording, and structure).
 10. Do not include any explanations, metadata, or commentary outside the specified format.
+11. Use the following format for your response:
 
 ---
 Output Format  
@@ -80,39 +81,28 @@ Test Scenarios
 
 TS-01: Validate whether [High-level description of the scenario].  
 TS-02: Validate whether [High-level description of the scenario].  
+TS-03: Validate whether [High-level description of the scenario].  
 ...continue listing all test scenarios...
 
-Test Cases (JSON Format)
+Test Cases  
 
-[
-  {{
-    "Test Case ID": "TC-01",
-    "Title": "Validate whether the user can login with valid credentials",
-    "Preconditions": "User must be registered and activated",
-    "Test Data": {{
-      "username": "validuser@example.com",
-      "password": "validPassword123"
-    }},
-    "Test Execution Steps": [
-      "Navigate to login page",
-      "Enter valid email",
-      "Enter valid password",
-      "Click on Login button"
-    ],
-    "Expected Outcome": "User is successfully logged in and redirected to the dashboard",
-    "Pass Criteria": "User is able to login and see dashboard",
-    "Fail Criteria": "User is not logged in or sees an error",
-    "Priority": "High",
-    "References": "{jira_id}"
-  }},
-  {{
-    "Test Case ID": "TC-02",
-    "Title": "...",
-    ...
-  }}
-]
+TC-01: Validate whether [Detailed description of the test case].  
+- Preconditions: [Any necessary setup before execution]  
+- Test Data: [Example test data if applicable]  
+- Test Execution Steps:  
+  1. Step 1  
+  2. Step 2  
+  3. Step 3  
+  4. Step 4  
+  5. Provide as many steps as possible by carefully analyzing the test case.
+- Expected Outcome: [Define the expected results]  
+- Pass/Fail Criteria:  
+  - Pass: [Conditions under which the test case passes]  
+  - Fail: [Conditions under which the test case fails]
+- Priority: [Low | Medium | High]  
+- References: {jira_id}
+
 ---
-
 Now generate test scenarios and test cases for the following user story
 
 User Story  
@@ -122,6 +112,5 @@ JIRA Issue ID {jira_id}
 
 Expected Acceptance Criteria  
 {acceptance_criteria}
-
 """
 )

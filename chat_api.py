@@ -35,10 +35,10 @@ async def generate_chat_test_cases(data: GenerationRequest):
         return {"error": "Missing required fields"}
 
     try:
-        result = await generate_test_cases_with_chat_model(
+        content = await generate_test_cases_with_chat_model(
             data.user_story, data.jira_id, data.acceptance_criteria
         )
-        return {"testCases": result["parsed_test_cases"]}
+        return {"testCases": content}
     except Exception as e:
         return {"error": f"Test case generation failed: {str(e)}"}
 
