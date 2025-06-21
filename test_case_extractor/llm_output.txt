@@ -1,0 +1,869 @@
+Story Title Edit Assessment
+JIRA Issue ID JTCGT-3
+
+Acceptance Criteria
+1. Admin should be able to access and edit any existing assessment.
+2. Admin should have a dropdown menu to switch directly to different assessments without going back to the assessment listing page.
+3. Admin should be able to modify assessment details, questions, and settings.
+4. Admin should be able to modify individual category and assessment questions.
+5. Admin should receive success/failure toast messages upon successful updates.
+
+Test Scenarios
+
+TS-01: Validate whether an admin can access the edit page for an Unassigned assessment by clicking on its card.
+TS-02: Validate whether an admin can access the edit page for an Assigned assessment by clicking on its card.
+TS-03: Validate whether searching for an assessment name displays relevant results on the listing page.
+TS-04: Validate whether the assessment details are displayed correctly on the edit page after accessing it.
+TS-05: Validate whether the assessment name field is editable for an Unassigned assessment.
+TS-06: Validate whether the assessment instructions field is editable for an Unassigned assessment.
+TS-07: Validate whether the assessment status field is read-only.
+TS-08: Validate whether the navigation panel displays the current assessment title in the dropdown.
+TS-09: Validate whether the assessment title dropdown menu has the correct default state.
+TS-10: Validate whether the assessment title dropdown menu expands on hover.
+TS-11: Validate whether the assessment title dropdown menu opens correctly on click.
+TS-12: Validate whether an admin can switch to a different assessment using the dropdown menu without unsaved changes.
+TS-13: Validate whether the "Save Changes" button is disabled by default when no edits are made.
+TS-14: Validate whether the "Save Changes" button becomes enabled when edits are made and required fields are valid.
+TS-15: Validate whether the "Cancel" button is always enabled.
+TS-16: Validate whether clicking the "Cancel" button triggers the confirmation modal when changes are unsaved.
+TS-17: Validate whether clicking the "back" icon triggers the confirmation modal when changes are unsaved.
+TS-18: Validate whether clicking another tab in the left navigation triggers the confirmation modal when changes are unsaved.
+TS-19: Validate whether confirming "Discard Changes" in the modal prevents saving and displays a failure toast.
+TS-20: Validate whether cancelling "Discard Changes" in the modal keeps the user on the edit page with unsaved changes.
+TS-21: Validate whether successfully saving changes displays a success toast message.
+TS-22: Validate whether successfully saving changes keeps the user on the edit page with updated details.
+TS-23: Validate whether an updated assessment moves to the top of the assessments listing page after saving.
+TS-24: Validate whether an Assigned assessment is read-only for all editable fields (Name, Instructions, Categories).
+TS-25: Validate whether the "Assigned to" field is displayed for Assigned assessments.
+TS-26: Validate whether hovering over the "Assigned to" field displays the names of feedback cycles.
+TS-27: Validate whether hovering over the Assessment Instructions field displays the full instructions as a tooltip.
+TS-28: Validate whether categories are displayed correctly with a dynamic count indicator.
+TS-29: Validate whether clicking a category expands it and collapses the previously expanded category.
+TS-30: Validate whether questions within an expanded category are displayed correctly with titles and weightage.
+TS-31: Validate whether question titles exceeding the width limit are truncated with ellipses.
+TS-32: Validate whether hovering over a truncated question title displays the full title in a tooltip.
+TS-33: Validate whether question weightage fields are editable.
+TS-34: Validate whether question weightage fields only accept whole numbers between 1 and 100.
+TS-35: Validate whether non-numeric input is restricted in the question weightage field.
+TS-36: Validate whether deleting a question removes it from the category and updates counts/weightage.
+TS-37: Validate whether the overall category weightage must sum to 100%.
+TS-38: Validate whether an error message is displayed if the overall category weightage is less than 100%.
+TS-39: Validate whether an error message is displayed if the overall category weightage is greater than 100%.
+TS-40: Validate whether the "Save Changes" button is disabled if the overall category weightage is not 100%.
+TS-41: Validate whether attempting to save changes fails and displays a failure toast message if server error occurs.
+TS-42: Validate whether switching assessments using the dropdown with unsaved changes triggers the confirmation modal.
+TS-43: Validate whether confirming discard changes in the modal when switching assessments navigates to the new assessment without saving the old one.
+TS-44: Validate whether cancelling discard changes in the modal when switching assessments keeps the user on the current assessment with unsaved changes.
+
+Test Cases
+
+TC-01: Validate whether an admin can access the edit page for an Unassigned assessment.
+- Preconditions: Admin is logged in and on the assessment listing page. An Unassigned assessment exists.
+- Test Data: An existing Unassigned assessment card.
+- Test Execution Steps:
+  1. Locate an Unassigned assessment card.
+  2. Click on the assessment card.
+  3. Observe the page transition.
+- Expected Outcome: The user is navigated to the edit assessment page for the selected Unassigned assessment. The page displays the assessment details.
+- Pass/Fail Criteria:
+  - Pass: User is successfully navigated to the edit page and details are displayed.
+  - Fail: User is not navigated or details are not displayed correctly.
+- Priority: High
+- References: JTCGT-3
+
+TC-02: Validate whether an admin can access the edit page for an Assigned assessment.
+- Preconditions: Admin is logged in and on the assessment listing page. An Assigned assessment exists.
+- Test Data: An existing Assigned assessment card.
+- Test Execution Steps:
+  1. Locate an Assigned assessment card.
+  2. Click on the assessment card.
+  3. Observe the page transition.
+- Expected Outcome: The user is navigated to the edit assessment page for the selected Assigned assessment. The page displays the assessment details in read-only mode for editable fields.
+- Pass/Fail Criteria:
+  - Pass: User is successfully navigated to the edit page and details are displayed in read-only mode where expected.
+  - Fail: User is not navigated or details are not displayed correctly/read-only state is incorrect.
+- Priority: High
+- References: JTCGT-3
+
+TC-03: Validate whether searching for an assessment name filters the listing correctly.
+- Preconditions: Admin is logged in and on the assessment listing page. Multiple assessments exist, including one with a known name.
+- Test Data: Assessment name "Performance Review Assessment".
+- Test Execution Steps:
+  1. Locate the search bar on the assessment listing page.
+  2. Enter "Performance Review Assessment" into the search bar.
+  3. Press Enter or observe the search result display.
+- Expected Outcome: Only the assessment card matching "Performance Review Assessment" is displayed, or results are filtered to include it.
+- Pass/Fail Criteria:
+  - Pass: Search results accurately filter the assessment listing based on the entered name.
+  - Fail: Search does not filter or displays incorrect results.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-04: Validate whether the assessment Name field is editable for an Unassigned assessment.
+- Preconditions: Admin is on the edit page for an Unassigned assessment.
+- Test Data: New assessment name "Updated Assessment Name".
+- Test Execution Steps:
+  1. Locate the Assessment Name field.
+  2. Attempt to type in the field.
+  3. Enter "Updated Assessment Name".
+- Expected Outcome: The field is editable and allows typing the new name.
+- Pass/Fail Criteria:
+  - Pass: The Assessment Name field allows editing.
+  - Fail: The Assessment Name field is read-only or does not allow typing.
+- Priority: High
+- References: JTCGT-3
+
+TC-05: Validate whether the assessment Instructions field is editable for an Unassigned assessment.
+- Preconditions: Admin is on the edit page for an Unassigned assessment.
+- Test Data: New assessment instructions "Please follow updated guidelines.".
+- Test Execution Steps:
+  1. Locate the Assessment Instructions field.
+  2. Attempt to type in the field.
+  3. Enter "Please follow updated guidelines.".
+- Expected Outcome: The field is editable and allows typing the new instructions.
+- Pass/Fail Criteria:
+  - Pass: The Assessment Instructions field allows editing.
+  - Fail: The Assessment Instructions field is read-only or does not allow typing.
+- Priority: High
+- References: JTCGT-3
+
+TC-06: Validate whether the assessment Status field is read-only.
+- Preconditions: Admin is on the edit page for any assessment (Assigned or Unassigned).
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Locate the Assessment Status field (e.g., "Assigned" or "Unassigned").
+  2. Attempt to click or interact with the status field.
+  3. Attempt to modify the status value.
+- Expected Outcome: The Assessment Status field is displayed but is not interactive or editable.
+- Pass/Fail Criteria:
+  - Pass: The Status field cannot be changed.
+  - Fail: The Status field can be modified.
+- Priority: High
+- References: JTCGT-3
+
+TC-07: Validate whether the navigation panel dropdown displays the current assessment title.
+- Preconditions: Admin is on the edit page for a specific assessment.
+- Test Data: The title of the currently edited assessment.
+- Test Execution Steps:
+  1. Observe the navigation panel at the top.
+  2. Locate the dropdown menu area.
+- Expected Outcome: The dropdown area displays the title of the assessment currently being edited.
+- Pass/Fail Criteria:
+  - Pass: The dropdown displays the correct current assessment title.
+  - Fail: The dropdown displays an incorrect title or is empty.
+- Priority: High
+- References: JTCGT-3
+
+TC-08: Validate whether the assessment title dropdown menu displays the correct default state.
+- Preconditions: Admin is on the edit page for an assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Observe the assessment title dropdown menu in the navigation panel.
+- Expected Outcome: The dropdown menu area displays the current assessment title in its default, closed state, appearing 'Filled'.
+- Pass/Fail Criteria:
+  - Pass: The dropdown displays the title and appears 'Filled' by default.
+  - Fail: The dropdown state is incorrect.
+- Priority: Low
+- References: JTCGT-3
+
+TC-09: Validate whether the assessment title dropdown menu expands on hover.
+- Preconditions: Admin is on the edit page for an assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Hover the mouse cursor over the assessment title dropdown menu area.
+- Expected Outcome: The dropdown area visually changes to indicate a hover state.
+- Pass/Fail Criteria:
+  - Pass: The dropdown displays a distinct hover state.
+  - Fail: The dropdown does not react visually to hover.
+- Priority: Low
+- References: JTCGT-3
+
+TC-10: Validate whether the assessment title dropdown menu opens correctly on click.
+- Preconditions: Admin is on the edit page for an assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Click on the assessment title dropdown menu area.
+- Expected Outcome: The dropdown menu opens, displaying a list of other available assessments.
+- Pass/Fail Criteria:
+  - Pass: The dropdown menu opens and lists other assessments.
+  - Fail: The dropdown menu does not open or is empty.
+- Priority: High
+- References: JTCGT-3
+
+TC-11: Validate whether the "Save Changes" button is disabled by default.
+- Preconditions: Admin is on the edit page for an assessment, and no changes have been made.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Observe the "Save Changes" button in the navigation panel.
+- Expected Outcome: The "Save Changes" button is visually disabled and not clickable.
+- Pass/Fail Criteria:
+  - Pass: The "Save Changes" button is disabled.
+  - Fail: The "Save Changes" button is enabled.
+- Priority: High
+- References: JTCGT-3
+
+TC-12: Validate whether the "Save Changes" button becomes enabled after making a valid edit.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. The "Save Changes" button is disabled.
+- Test Data: A single character change to the Assessment Name field.
+- Test Execution Steps:
+  1. Edit the Assessment Name field (e.g., add a character).
+  2. Observe the state of the "Save Changes" button.
+- Expected Outcome: The "Save Changes" button becomes visually enabled and clickable.
+- Pass/Fail Criteria:
+  - Pass: The "Save Changes" button changes from disabled to enabled.
+  - Fail: The "Save Changes" button remains disabled.
+- Priority: High
+- References: JTCGT-3
+
+TC-13: Validate whether the "Cancel" button is always enabled.
+- Preconditions: Admin is on the edit page for an assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Observe the "Cancel" button in the navigation panel when no changes are made.
+  2. Make an edit (e.g., change name).
+  3. Observe the state of the "Cancel" button after the edit.
+- Expected Outcome: The "Cancel" button is always visually enabled and clickable regardless of whether changes have been made.
+- Pass/Fail Criteria:
+  - Pass: The "Cancel" button is enabled in both states.
+  - Fail: The "Cancel" button is disabled at any point.
+- Priority: High
+- References: JTCGT-3
+
+TC-14: Validate whether clicking "Cancel" triggers the confirmation modal when changes are unsaved.
+- Preconditions: Admin is on the edit page for an assessment and has made unsaved changes.
+- Test Data: Unsaved change (e.g., modified Assessment Name).
+- Test Execution Steps:
+  1. Make an edit to the assessment (e.g., change name).
+  2. Click the "Cancel" button.
+- Expected Outcome: A confirmation modal appears asking the user to discard changes.
+- Pass/Fail Criteria:
+  - Pass: The confirmation modal is displayed.
+  - Fail: The modal is not displayed, and the user is either taken back without saving or nothing happens.
+- Priority: High
+- References: JTCGT-3
+
+TC-15: Validate whether clicking the "back" icon triggers the confirmation modal when changes are unsaved.
+- Preconditions: Admin is on the edit page for an assessment and has made unsaved changes.
+- Test Data: Unsaved change (e.g., modified Assessment Instructions).
+- Test Execution Steps:
+  1. Make an edit to the assessment (e.g., change instructions).
+  2. Click the "back" icon (assuming it's part of the navigation panel).
+- Expected Outcome: A confirmation modal appears asking the user to discard changes.
+- Pass/Fail Criteria:
+  - Pass: The confirmation modal is displayed.
+  - Fail: The modal is not displayed, and the user is either taken back without saving or nothing happens.
+- Priority: High
+- References: JTCGT-3
+
+TC-16: Validate whether confirming "Discard Changes" in the modal prevents saving and displays a failure toast.
+- Preconditions: Admin is on the edit page with unsaved changes, and the confirmation modal is displayed (e.g., triggered by clicking Cancel).
+- Test Data: Unsaved changes.
+- Test Execution Steps:
+  1. Click "Cancel" (or Back icon/other tab) to trigger the modal.
+  2. In the confirmation modal, click the "Discard Changes" or confirmation button.
+  3. Observe the screen and check for toast messages.
+- Expected Outcome: The modal closes, the unsaved changes are not applied, the user is navigated away (e.g., back to listing), and a failure toast message "Failed to save changes" appears.
+- Pass/Fail Criteria:
+  - Pass: Modal closes, changes are not saved, user navigates away, and failure toast appears.
+  - Fail: Changes are saved, user stays on page, no toast, or incorrect toast appears.
+- Priority: High
+- References: JTCGT-3
+
+TC-17: Validate whether cancelling "Discard Changes" in the modal keeps the user on the edit page.
+- Preconditions: Admin is on the edit page with unsaved changes, and the confirmation modal is displayed (e.g., triggered by clicking Cancel).
+- Test Data: Unsaved changes.
+- Test Execution Steps:
+  1. Click "Cancel" (or Back icon/other tab) to trigger the modal.
+  2. In the confirmation modal, click the "Cancel" or negation button.
+  3. Observe the screen.
+- Expected Outcome: The modal closes, and the user remains on the current edit assessment page with their unsaved changes still present.
+- Pass/Fail Criteria:
+  - Pass: Modal closes, and user remains on the page with changes.
+  - Fail: Modal closes, and user is navigated away or changes are lost.
+- Priority: High
+- References: JTCGT-3
+
+TC-18: Validate whether successfully saving changes displays a success toast message.
+- Preconditions: Admin is on the edit page for an Unassigned assessment, has made valid changes, and the "Save Changes" button is enabled.
+- Test Data: Valid edits (e.g., new name, instructions).
+- Test Execution Steps:
+  1. Make valid edits to the assessment details (e.g., change name).
+  2. Click the "Save Changes" button.
+  3. Observe the bottom right of the screen.
+- Expected Outcome: A success toast message "Changes saved successfully" appears on the bottom right.
+- Pass/Fail Criteria:
+  - Pass: The success toast message is displayed correctly.
+  - Fail: No toast message appears, or an incorrect message is displayed.
+- Priority: High
+- References: JTCGT-3
+
+TC-19: Validate whether successfully saving changes keeps the user on the edit page with updated details.
+- Preconditions: Admin is on the edit page for an Unassigned assessment, has made valid changes, and the "Save Changes" button is enabled.
+- Test Data: Valid edits (e.g., new name "Assessment Alpha Updated").
+- Test Execution Steps:
+  1. Make valid edits (e.g., change name to "Assessment Alpha Updated").
+  2. Click the "Save Changes" button.
+  3. Observe the page after the save operation completes.
+- Expected Outcome: The user remains on the same edit assessment page, and the displayed details (e.g., name) reflect the changes made.
+- Pass/Fail Criteria:
+  - Pass: User stays on the page, and displayed details are updated.
+  - Fail: User is navigated away, or displayed details are not updated.
+- Priority: High
+- References: JTCGT-3
+
+TC-20: Validate whether an updated assessment moves to the top of the assessments listing page after saving.
+- Preconditions: Admin is on the edit page for an Unassigned assessment, has made valid changes and saved successfully. There are multiple assessments in the listing.
+- Test Data: Valid edits saved successfully.
+- Test Execution Steps:
+  1. Make valid edits and save the assessment.
+  2. Navigate back to the assessment listing page (e.g., using the "back" icon or navigation menu if no unsaved changes).
+  3. Observe the order of assessments in the listing.
+- Expected Outcome: The assessment that was just edited and saved appears at the top of the assessment listing.
+- Pass/Fail Criteria:
+  - Pass: The updated assessment is listed first.
+  - Fail: The updated assessment is not at the top of the list.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-21: Validate whether an Assigned assessment's Name field is read-only.
+- Preconditions: Admin is on the edit page for an Assigned assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Locate the Assessment Name field for the Assigned assessment.
+  2. Attempt to click or type in the field.
+- Expected Outcome: The Assessment Name field is displayed but cannot be edited.
+- Pass/Fail Criteria:
+  - Pass: The Name field is read-only.
+  - Fail: The Name field is editable.
+- Priority: High
+- References: JTCGT-3
+
+TC-22: Validate whether an Assigned assessment's Instructions field is read-only.
+- Preconditions: Admin is on the edit page for an Assigned assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Locate the Assessment Instructions field for the Assigned assessment.
+  2. Attempt to click or type in the field.
+- Expected Outcome: The Assessment Instructions field is displayed but cannot be edited.
+- Pass/Fail Criteria:
+  - Pass: The Instructions field is read-only.
+  - Fail: The Instructions field is editable.
+- Priority: High
+- References: JTCGT-3
+
+TC-23: Validate whether categories in an Assigned assessment are read-only.
+- Preconditions: Admin is on the edit page for an Assigned assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Locate the Categories section.
+  2. Attempt to expand a category, edit a question weightage, or delete a question.
+- Expected Outcome: Categories and their contents (questions, weightage, delete icons) are displayed but are not interactive or editable.
+- Pass/Fail Criteria:
+  - Pass: Categories and questions within an Assigned assessment are read-only.
+  - Fail: Categories or questions can be modified.
+- Priority: High
+- References: JTCGT-3
+
+TC-24: Validate whether the "Assigned to" field is displayed for Assigned assessments.
+- Preconditions: Admin is on the edit page for an Assigned assessment.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Observe the assessment details section.
+- Expected Outcome: An additional field labeled "Assigned to" is displayed, showing the number of cycles the assessment is assigned to.
+- Pass/Fail Criteria:
+  - Pass: The "Assigned to" field is visible.
+  - Fail: The "Assigned to" field is missing.
+- Priority: High
+- References: JTCGT-3
+
+TC-25: Validate whether hovering over the "Assigned to" field displays cycle names.
+- Preconditions: Admin is on the edit page for an Assigned assessment. The "Assigned to" field is visible.
+- Test Data: An Assigned assessment linked to multiple feedback cycles (e.g., "Cycle A", "Cycle B").
+- Test Execution Steps:
+  1. Hover the mouse cursor over the "Assigned to" field.
+- Expected Outcome: A tooltip appears displaying the names of the feedback cycles the assessment is assigned to (e.g., "Cycle A, Cycle B").
+- Pass/Fail Criteria:
+  - Pass: A tooltip with correct cycle names appears on hover.
+  - Fail: No tooltip appears, or the tooltip displays incorrect information.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-26: Validate whether hovering over the Assessment Instructions field displays the full instructions.
+- Preconditions: Admin is on the edit page for an assessment. The Assessment Instructions field contains text that might be truncated.
+- Test Data: Assessment Instructions text that is long enough to potentially be truncated.
+- Test Execution Steps:
+  1. Hover the mouse cursor over the Assessment Instructions field.
+- Expected Outcome: A tooltip appears displaying the full text of the Assessment Instructions.
+- Pass/Fail Criteria:
+  - Pass: A tooltip with the complete instructions text appears on hover.
+  - Fail: No tooltip appears, or the tooltip is incomplete/incorrect.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-27: Validate whether categories are displayed under the categories section with a count indicator.
+- Preconditions: Admin is on the edit page for an Unassigned assessment with multiple categories.
+- Test Data: An assessment with 3 categories.
+- Test Execution Steps:
+  1. Scroll down to the Categories section.
+  2. Observe the display of categories.
+- Expected Outcome: All categories are listed, and a count indicator (e.g., "Categories (3)") is displayed showing the total number of categories.
+- Pass/Fail Criteria:
+  - Pass: Categories are listed correctly with an accurate count indicator.
+  - Fail: Categories are missing, or the count is incorrect/missing.
+- Priority: High
+- References: JTCGT-3
+
+TC-28: Validate whether the category count indicator updates dynamically when a category is added (Not covered by this story, but related).
+- Preconditions: Admin is on the edit page for an Unassigned assessment.
+- Test Data: N/A (Requires functionality to add categories, which is out of scope but mentioned for dynamic update validation).
+- Test Execution Steps: N/A (Cannot be tested based on provided story scope).
+- Expected Outcome: N/A.
+- Pass/Fail Criteria: N/A.
+- Priority: Low
+- References: JTCGT-3
+
+TC-29: Validate whether clicking a category expands it and collapses the previously expanded category.
+- Preconditions: Admin is on the edit page for an Unassigned assessment with multiple categories. No categories are currently expanded.
+- Test Data: Multiple categories (e.g., "Category A", "Category B").
+- Test Execution Steps:
+  1. Click on "Category A".
+  2. Observe the expansion state.
+  3. Click on "Category B".
+  4. Observe the expansion state of both categories.
+- Expected Outcome: Clicking "Category A" expands it. Clicking "Category B" expands "Category B" and collapses "Category A". Only one category is expanded at a time.
+- Pass/Fail Criteria:
+  - Pass: Categories expand and collapse as expected, with only one open at a time.
+  - Fail: Multiple categories remain open, or clicking doesn't expand/collapse correctly.
+- Priority: High
+- References: JTCGT-3
+
+TC-30: Validate whether questions within an expanded category are displayed correctly.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded.
+- Test Data: A category with multiple questions, each having a title and weightage.
+- Test Execution Steps:
+  1. Expand a category containing questions.
+  2. Observe the display of questions within the category.
+- Expected Outcome: Each question is displayed as a card showing its title, assigned weightage, and a delete icon.
+- Pass/Fail Criteria:
+  - Pass: Questions are displayed correctly with all required information.
+  - Fail: Questions are missing, or information (title, weightage, icon) is incorrect/missing.
+- Priority: High
+- References: JTCGT-3
+
+TC-31: Validate whether question titles exceeding width are truncated with ellipses.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category contains a question with a very long title.
+- Test Data: A question title like "This is a very very very very very very very very very very very very very very very long question title that exceeds the 600px text box width limit".
+- Test Execution Steps:
+  1. Expand the category containing the long question title.
+  2. Observe the display of the question title on the card.
+- Expected Outcome: The question title is truncated, ending with "...".
+- Pass/Fail Criteria:
+  - Pass: The long question title is truncated correctly with ellipses.
+  - Fail: The title is not truncated, or truncation is incorrect.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-32: Validate whether hovering over a truncated question title displays the full title in a tooltip.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category contains a question with a truncated title.
+- Test Data: A question title truncated with "...".
+- Test Execution Steps:
+  1. Expand the category containing the truncated title.
+  2. Hover the mouse cursor over the truncated question title.
+- Expected Outcome: A tooltip appears displaying the complete, non-truncated question title.
+- Pass/Fail Criteria:
+  - Pass: A tooltip with the full title appears on hover.
+  - Fail: No tooltip appears, or the tooltip is incorrect/incomplete.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-33: Validate whether question weightage fields are editable for an Unassigned assessment.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded showing questions.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Locate the weightage field for a question.
+  2. Attempt to click or type in the field.
+- Expected Outcome: The weightage field is editable and allows input.
+- Pass/Fail Criteria:
+  - Pass: The weightage field can be edited.
+  - Fail: The weightage field is read-only.
+- Priority: High
+- References: JTCGT-3
+
+TC-34: Validate whether question weightage field accepts a valid whole number (1-100).
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded showing questions. The weightage field is editable.
+- Test Data: Valid whole number input: 50.
+- Test Execution Steps:
+  1. Locate a question weightage field.
+  2. Enter "50" into the field.
+  3. Observe the field's behavior.
+- Expected Outcome: The field accepts "50" and displays it correctly.
+- Pass/Fail Criteria:
+  - Pass: The field accepts and displays the valid number.
+  - Fail: The field rejects or modifies the valid number.
+- Priority: High
+- References: JTCGT-3
+
+TC-35: Validate whether question weightage field rejects input outside the 1-100 range (Below 1).
+- Preconditions: Admin is on the edit page for an Unassigned assessment. The weightage field is editable.
+- Test Data: Invalid number input: 0.
+- Test Execution Steps:
+  1. Locate a question weightage field.
+  2. Attempt to enter "0" into the field.
+- Expected Outcome: The field rejects the input, prevents entry, or displays a validation error message.
+- Pass/Fail Criteria:
+  - Pass: The field prevents entry of 0 or flags it as invalid.
+  - Fail: The field accepts 0.
+- Priority: High
+- References: JTCGT-3
+
+TC-36: Validate whether question weightage field rejects input outside the 1-100 range (Above 100).
+- Preconditions: Admin is on the edit page for an Unassigned assessment. The weightage field is editable.
+- Test Data: Invalid number input: 101.
+- Test Execution Steps:
+  1. Locate a question weightage field.
+  2. Attempt to enter "101" into the field.
+- Expected Outcome: The field rejects the input, prevents entry, or displays a validation error message.
+- Pass/Fail Criteria:
+  - Pass: The field prevents entry of 101 or flags it as invalid.
+  - Fail: The field accepts 101.
+- Priority: High
+- References: JTCGT-3
+
+TC-37: Validate whether question weightage field rejects decimal input.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. The weightage field is editable.
+- Test Data: Invalid decimal input: 50.5.
+- Test Execution Steps:
+  1. Locate a question weightage field.
+  2. Attempt to enter "50.5" into the field.
+- Expected Outcome: The field rejects the decimal, removes the decimal point, or displays a validation error message.
+- Pass/Fail Criteria:
+  - Pass: The field prevents or rejects decimal input.
+  - Fail: The field accepts decimal input.
+- Priority: High
+- References: JTCGT-3
+
+TC-38: Validate whether non-numeric characters are restricted at input level in the weightage field.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. The weightage field is editable.
+- Test Data: Non-numeric input: "abc".
+- Test Execution Steps:
+  1. Locate a question weightage field.
+  2. Attempt to type "abc" into the field.
+- Expected Outcome: The field prevents the entry of non-numeric characters.
+- Pass/Fail Criteria:
+  - Pass: Non-numeric characters cannot be entered.
+  - Fail: Non-numeric characters can be entered.
+- Priority: High
+- References: JTCGT-3
+
+TC-39: Validate whether deleting a question removes it from the category.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions.
+- Test Data: A question card with a delete icon.
+- Test Execution Steps:
+  1. Expand a category.
+  2. Locate a question card.
+  3. Click the delete icon on the question card.
+  4. Observe the list of questions in the category.
+- Expected Outcome: The question card is removed from the displayed list of questions within the category.
+- Pass/Fail Criteria:
+  - Pass: The question is removed from the display.
+  - Fail: The question remains displayed after clicking delete.
+- Priority: High
+- References: JTCGT-3
+
+TC-40: Validate whether deleting a question updates the category question count.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions.
+- Test Data: A category with an initial count (e.g., 4 questions).
+- Test Execution Steps:
+  1. Expand a category with a known number of questions.
+  2. Note the category count indicator.
+  3. Click the delete icon on one question.
+  4. Observe the category count indicator.
+- Expected Outcome: The category count indicator decreases by 1.
+- Pass/Fail Criteria:
+  - Pass: The category count updates correctly after deletion.
+  - Fail: The category count does not change or updates incorrectly.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-41: Validate whether deleting a question updates the overall category weightage display.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions, and their weightages sum to 100%.
+- Test Data: A category with questions summing to 100%.
+- Test Execution Steps:
+  1. Expand a category.
+  2. Note the displayed overall category weightage (should be 100%).
+  3. Delete a question.
+  4. Observe the overall category weightage display.
+- Expected Outcome: The overall category weightage display updates to reflect the removal of the question's weightage (e.g., changes from 100% to something less). An error message indicating weightage is not 100% might appear.
+- Pass/Fail Criteria:
+  - Pass: The overall category weightage display updates correctly.
+  - Fail: The overall weightage display does not change.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-42: Validate whether an error message is displayed if overall category weightage is less than 100% after editing.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded.
+- Test Data: Edit question weightages so the sum for a category is less than 100% (e.g., 80%).
+- Test Execution Steps:
+  1. Expand a category.
+  2. Edit question weightages within that category so they sum to less than 100%.
+  3. Observe the area where the overall weightage is displayed.
+- Expected Outcome: An error message indicating the category weightage must sum to 100% is displayed.
+- Pass/Fail Criteria:
+  - Pass: The correct error message appears.
+  - Fail: No error message appears, or an incorrect message is shown.
+- Priority: High
+- References: JTCGT-3
+
+TC-43: Validate whether an error message is displayed if overall category weightage is greater than 100% after editing.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded.
+- Test Data: Edit question weightages so the sum for a category is greater than 100% (e.g., 110%).
+- Test Execution Steps:
+  1. Expand a category.
+  2. Edit question weightages within that category so they sum to greater than 100%.
+  3. Observe the area where the overall weightage is displayed.
+- Expected Outcome: An error message indicating the category weightage must sum to 100% is displayed.
+- Pass/Fail Criteria:
+  - Pass: The correct error message appears.
+  - Fail: No error message appears, or an incorrect message is shown.
+- Priority: High
+- References: JTCGT-3
+
+TC-44: Validate whether the "Save Changes" button is disabled if the overall category weightage is not 100%.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded.
+- Test Data: Edit question weightages so the sum for a category is not 100% (e.g., 90%).
+- Test Execution Steps:
+  1. Expand a category.
+  2. Edit question weightages so they sum to less than 100%.
+  3. Observe the state of the "Save Changes" button.
+- Expected Outcome: The "Save Changes" button is disabled.
+- Pass/Fail Criteria:
+  - Pass: The "Save Changes" button is disabled when weightage is not 100%.
+  - Fail: The "Save Changes" button is enabled despite incorrect weightage sum.
+- Priority: High
+- References: JTCGT-3
+
+TC-45: Validate whether the "Save Changes" button becomes enabled when overall category weightage is corrected to 100%.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category weightage is not 100%, and the "Save Changes" button is disabled.
+- Test Data: Edit question weightages to correct the sum to exactly 100%.
+- Test Execution Steps:
+  1. Edit question weightages so they sum to less than 100% (button disabled).
+  2. Edit weightages again to make the sum exactly 100%.
+  3. Observe the state of the "Save Changes" button.
+- Expected Outcome: The "Save Changes" button becomes enabled.
+- Pass/Fail Criteria:
+  - Pass: The "Save Changes" button becomes enabled when weightage is corrected.
+  - Fail: The "Save Changes" button remains disabled.
+- Priority: High
+- References: JTCGT-3
+
+TC-46: Validate switching to a different assessment via dropdown without unsaved changes.
+- Preconditions: Admin is on the edit page for Assessment A. No changes have been made. Multiple other assessments exist (e.g., Assessment B).
+- Test Data: Assessment A (current), Assessment B (target).
+- Test Execution Steps:
+  1. Click the assessment title dropdown in the navigation panel.
+  2. Select "Assessment B" from the list.
+  3. Observe the page transition.
+- Expected Outcome: The user is navigated directly to the edit page for Assessment B without a confirmation modal.
+- Pass/Fail Criteria:
+  - Pass: User is navigated to Assessment B's edit page without a modal.
+  - Fail: A modal appears, or navigation fails.
+- Priority: High
+- References: JTCGT-3
+
+TC-47: Validate switching to a different assessment via dropdown triggers confirmation modal with unsaved changes.
+- Preconditions: Admin is on the edit page for Assessment A. Unsaved changes have been made. Multiple other assessments exist (e.g., Assessment B).
+- Test Data: Unsaved changes on Assessment A, Assessment B (target).
+- Test Execution Steps:
+  1. Make an edit to Assessment A (e.g., change name).
+  2. Click the assessment title dropdown in the navigation panel.
+  3. Select "Assessment B" from the list.
+  4. Observe the screen.
+- Expected Outcome: A confirmation modal appears asking the user to discard changes on Assessment A before switching.
+- Pass/Fail Criteria:
+  - Pass: The confirmation modal is displayed.
+  - Fail: The modal is not displayed, and user is either navigated away or stays on Assessment A.
+- Priority: High
+- References: JTCGT-3
+
+TC-48: Validate confirming discard changes in modal when switching assessments navigates to new assessment.
+- Preconditions: Admin is on the edit page for Assessment A with unsaved changes. The confirmation modal is displayed (triggered by attempting to switch to Assessment B).
+- Test Data: Unsaved changes on Assessment A, Assessment B (target).
+- Test Execution Steps:
+  1. Attempt to switch to Assessment B via dropdown, triggering the modal.
+  2. In the confirmation modal, click the "Discard Changes" or confirmation button.
+  3. Observe the page transition.
+- Expected Outcome: The modal closes, changes on Assessment A are not saved, and the user is navigated to the edit page for Assessment B.
+- Pass/Fail Criteria:
+  - Pass: Modal closes, changes on A are discarded, and user is on Assessment B's page.
+  - Fail: Changes on A are saved, user stays on A, or user navigates incorrectly.
+- Priority: High
+- References: JTCGT-3
+
+TC-49: Validate cancelling discard changes in modal when switching assessments keeps user on current assessment.
+- Preconditions: Admin is on the edit page for Assessment A with unsaved changes. The confirmation modal is displayed (triggered by attempting to switch to Assessment B).
+- Test Data: Unsaved changes on Assessment A, Assessment B (target).
+- Test Execution Steps:
+  1. Attempt to switch to Assessment B via dropdown, triggering the modal.
+  2. In the confirmation modal, click the "Cancel" or negation button.
+  3. Observe the screen.
+- Expected Outcome: The modal closes, and the user remains on the edit page for Assessment A with their unsaved changes still present.
+- Pass/Fail Criteria:
+  - Pass: Modal closes, user stays on Assessment A's page with changes.
+  - Fail: User is navigated away or changes are lost.
+- Priority: High
+- References: JTCGT-3
+
+TC-50: Validate attempting to save with empty required fields keeps button disabled (Assuming Name is required).
+- Preconditions: Admin is on the edit page for an Unassigned assessment. The Assessment Name field is empty (or made empty).
+- Test Data: Empty Assessment Name field.
+- Test Execution Steps:
+  1. Ensure the Assessment Name field is empty.
+  2. Make another valid edit (e.g., change instructions) to potentially enable the button.
+  3. Observe the state of the "Save Changes" button.
+- Expected Outcome: The "Save Changes" button remains disabled because a required field (Name) is empty.
+- Pass/Fail Criteria:
+  - Pass: The Save button is disabled due to the empty required field.
+  - Fail: The Save button becomes enabled despite the empty required field.
+- Priority: High
+- References: JTCGT-3
+
+TC-51: Validate updating Assessment Name with valid characters.
+- Preconditions: Admin is on the edit page for an Unassigned assessment.
+- Test Data: Valid name: "Assessment with Numbers 123!".
+- Test Execution Steps:
+  1. Edit the Assessment Name field.
+  2. Enter "Assessment with Numbers 123!".
+  3. Observe the field input.
+- Expected Outcome: The field accepts the input correctly.
+- Pass/Fail Criteria:
+  - Pass: Valid characters are accepted.
+  - Fail: Valid characters are rejected.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-52: Validate updating Assessment Instructions with special characters.
+- Preconditions: Admin is on the edit page for an Unassigned assessment.
+- Test Data: Instructions with special characters: "Read instructions carefully @#$%^&*()_+".
+- Test Execution Steps:
+  1. Edit the Assessment Instructions field.
+  2. Enter "Read instructions carefully @#$%^&*()_+".
+  3. Observe the field input.
+- Expected Outcome: The field accepts the input correctly.
+- Pass/Fail Criteria:
+  - Pass: Special characters are accepted.
+  - Fail: Special characters are rejected.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-53: Validate saving changes after only modifying question weightages (summing to 100%).
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category weightage sums to 100%.
+- Test Data: Modified question weightages within a category, still summing to 100%.
+- Test Execution Steps:
+  1. Expand a category.
+  2. Modify the weightage of questions ensuring the total sum remains 100%.
+  3. Click "Save Changes".
+  4. Observe the toast message and page state.
+- Expected Outcome: A success toast appears, and the user remains on the page with the new weightages saved.
+- Pass/Fail Criteria:
+  - Pass: Save is successful, toast appears, user stays on page.
+  - Fail: Save fails, incorrect toast, or user navigates away.
+- Priority: High
+- References: JTCGT-3
+
+TC-54: Validate attempting to save changes when server error occurs.
+- Preconditions: Admin is on the edit page for an Unassigned assessment, has made valid changes, and the "Save Changes" button is enabled. (Requires simulating a server error).
+- Test Data: Valid edits.
+- Test Execution Steps:
+  1. Make valid edits.
+  2. Click the "Save Changes" button.
+  3. (Simulate server error response).
+  4. Observe the screen and check for toast messages.
+- Expected Outcome: A failure toast message "Failed to save changes" appears on the bottom right. The user remains on the edit page with unsaved changes.
+- Pass/Fail Criteria:
+  - Pass: Failure toast appears, and user remains on the page with changes.
+  - Fail: Success toast appears, user navigates away, or no toast appears.
+- Priority: High
+- References: JTCGT-3
+
+TC-55: Validate category weightage display next to each category header.
+- Preconditions: Admin is on the edit page for an Unassigned assessment with multiple categories.
+- Test Data: Categories with questions assigned weightages.
+- Test Execution Steps:
+  1. Scroll to the Categories section.
+  2. Observe the display next to each category name (when collapsed or expanded).
+- Expected Outcome: The calculated sum of question weightages for that category is displayed next to the category name (e.g., "Category A (100%)").
+- Pass/Fail Criteria:
+  - Pass: Category weightage is displayed correctly next to each category header.
+  - Fail: Weightage display is missing or incorrect.
+- Priority: Medium
+- References: JTCGT-3
+
+TC-56: Validate the overall assessment structure display after saving changes.
+- Preconditions: Admin is on the edit page for an Unassigned assessment, has made valid changes (e.g., name, instructions, question weightages), and saved successfully.
+- Test Data: Saved changes including name, instructions, and question weightages.
+- Test Execution Steps:
+  1. Make various valid edits and save.
+  2. Remain on the page and observe the displayed assessment details, categories, and questions.
+- Expected Outcome: The page continues to display the assessment structure, and all the saved changes (Name, Instructions, updated question weightages, deleted questions) are reflected accurately.
+- Pass/Fail Criteria:
+  - Pass: All saved changes are correctly displayed on the edit page.
+  - Fail: Some or all saved changes are not reflected.
+- Priority: High
+- References: JTCGT-3
+
+TC-57: Validate that the dropdown selected state is displayed correctly after switching assessments.
+- Preconditions: Admin is on the edit page for an assessment. Multiple assessments are available in the dropdown.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Click the assessment title dropdown.
+  2. Select a different assessment from the list.
+  3. Observe the appearance of the dropdown area after the new assessment page loads.
+- Expected Outcome: The dropdown area displays the title of the newly selected assessment and appears in the "Selected" state according to the design.
+- Pass/Fail Criteria:
+  - Pass: The dropdown displays the new title and is in the correct "Selected" state.
+  - Fail: The dropdown state is incorrect after switching.
+- Priority: Low
+- References: JTCGT-3
+
+TC-58: Validate that the dropdown hover state is displayed correctly when the dropdown is open.
+- Preconditions: Admin is on the edit page for an assessment. The assessment title dropdown is open.
+- Test Data: N/A.
+- Test Execution Steps:
+  1. Click the assessment title dropdown to open it.
+  2. Hover the mouse cursor over an item in the open dropdown list.
+- Expected Outcome: The specific item being hovered over in the open dropdown list displays a distinct hover state according to the design.
+- Pass/Fail Criteria:
+  - Pass: Items in the open dropdown list display the correct hover state.
+  - Fail: Items do not display a hover state or display an incorrect one.
+- Priority: Low
+- References: JTCGT-3
+
+TC-59: Validate that the category count indicator updates dynamically when a question is deleted.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions.
+- Test Data: A category with an initial question count (e.g., 5 questions).
+- Test Execution Steps:
+  1. Expand a category.
+  2. Note the category count indicator next to the category name.
+  3. Delete one question from the category.
+  4. Observe the category count indicator.
+- Expected Outcome: The category count indicator dynamically updates to reflect the decrease in the number of questions (e.g., changes from 5 to 4).
+- Pass/Fail Criteria:
+  - Pass: The category count updates in real-time upon question deletion.
+  - Fail: The count does not update or updates incorrectly.
+- Priority: High
+- References: JTCGT-3
+
+TC-60: Validate that the overall category weightage display updates dynamically when question weightages are edited.
+- Preconditions: Admin is on the edit page for an Unassigned assessment. A category is expanded.
+- Test Data: A category with questions.
+- Test Execution Steps:
+  1. Expand a category.
+  2. Note the overall category weightage displayed next to the category name.
+  3. Edit the weightage of one or more questions within that category.
+  4. Observe the overall category weightage display while editing.
+- Expected Outcome: The overall category weightage display updates dynamically as question weightages are changed.
+- Pass/Fail Criteria:
+  - Pass: The overall weightage updates dynamically.
+  - Fail: The overall weightage only updates on save or not at all.
+- Priority: High
+- References: JTCGT-3

@@ -1,0 +1,902 @@
+[
+  {
+    "Test Case ID": "TC-01",
+    "Title": "Validate whether an admin can access the edit page for an Unassigned assessment.",
+    "Preconditions": "Admin is logged in and on the assessment listing page. An Unassigned assessment exists.",
+    "Test Data": "An existing Unassigned assessment card.",
+    "Test Execution Steps": [
+      "1. Locate an Unassigned assessment card.",
+      "2. Click on the assessment card.",
+      "3. Observe the page transition."
+    ],
+    "Expected Outcome": "The user is navigated to the edit assessment page for the selected Unassigned assessment. The page displays the assessment details.",
+    "Pass Criteria": "User is successfully navigated to the edit page and details are displayed.",
+    "Fail Criteria": "User is not navigated or details are not displayed correctly.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-02",
+    "Title": "Validate whether an admin can access the edit page for an Assigned assessment.",
+    "Preconditions": "Admin is logged in and on the assessment listing page. An Assigned assessment exists.",
+    "Test Data": "An existing Assigned assessment card.",
+    "Test Execution Steps": [
+      "1. Locate an Assigned assessment card.",
+      "2. Click on the assessment card.",
+      "3. Observe the page transition."
+    ],
+    "Expected Outcome": "The user is navigated to the edit assessment page for the selected Assigned assessment. The page displays the assessment details in read-only mode for editable fields.",
+    "Pass Criteria": "User is successfully navigated to the edit page and details are displayed in read-only mode where expected.",
+    "Fail Criteria": "User is not navigated or details are not displayed correctly/read-only state is incorrect.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-03",
+    "Title": "Validate whether searching for an assessment name filters the listing correctly.",
+    "Preconditions": "Admin is logged in and on the assessment listing page. Multiple assessments exist, including one with a known name.",
+    "Test Data": "Assessment name \"Performance Review Assessment\".",
+    "Test Execution Steps": [
+      "1. Locate the search bar on the assessment listing page.",
+      "2. Enter \"Performance Review Assessment\" into the search bar.",
+      "3. Press Enter or observe the search result display."
+    ],
+    "Expected Outcome": "Only the assessment card matching \"Performance Review Assessment\" is displayed, or results are filtered to include it.",
+    "Pass Criteria": "Search results accurately filter the assessment listing based on the entered name.",
+    "Fail Criteria": "Search does not filter or displays incorrect results.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-04",
+    "Title": "Validate whether the assessment Name field is editable for an Unassigned assessment.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment.",
+    "Test Data": "New assessment name \"Updated Assessment Name\".",
+    "Test Execution Steps": [
+      "1. Locate the Assessment Name field.",
+      "2. Attempt to type in the field.",
+      "3. Enter \"Updated Assessment Name\"."
+    ],
+    "Expected Outcome": "The field is editable and allows typing the new name.",
+    "Pass Criteria": "The Assessment Name field allows editing.",
+    "Fail Criteria": "The Assessment Name field is read-only or does not allow typing.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-05",
+    "Title": "Validate whether the assessment Instructions field is editable for an Unassigned assessment.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment.",
+    "Test Data": "New assessment instructions \"Please follow updated guidelines.\".",
+    "Test Execution Steps": [
+      "1. Locate the Assessment Instructions field.",
+      "2. Attempt to type in the field.",
+      "3. Enter \"Please follow updated guidelines.\"."
+    ],
+    "Expected Outcome": "The field is editable and allows typing the new instructions.",
+    "Pass Criteria": "The Assessment Instructions field allows editing.",
+    "Fail Criteria": "The Assessment Instructions field is read-only or does not allow typing.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-06",
+    "Title": "Validate whether the assessment Status field is read-only.",
+    "Preconditions": "Admin is on the edit page for any assessment (Assigned or Unassigned).",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Locate the Assessment Status field (e.g., \"Assigned\" or \"Unassigned\").",
+      "2. Attempt to click or interact with the status field.",
+      "3. Attempt to modify the status value."
+    ],
+    "Expected Outcome": "The Assessment Status field is displayed but is not interactive or editable.",
+    "Pass Criteria": "The Status field cannot be changed.",
+    "Fail Criteria": "The Status field can be modified.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-07",
+    "Title": "Validate whether the navigation panel dropdown displays the current assessment title.",
+    "Preconditions": "Admin is on the edit page for a specific assessment.",
+    "Test Data": "The title of the currently edited assessment.",
+    "Test Execution Steps": [
+      "1. Observe the navigation panel at the top.",
+      "2. Locate the dropdown menu area."
+    ],
+    "Expected Outcome": "The dropdown area displays the title of the assessment currently being edited.",
+    "Pass Criteria": "The dropdown displays the correct current assessment title.",
+    "Fail Criteria": "The dropdown displays an incorrect title or is empty.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-08",
+    "Title": "Validate whether the assessment title dropdown menu displays the correct default state.",
+    "Preconditions": "Admin is on the edit page for an assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Observe the assessment title dropdown menu in the navigation panel."
+    ],
+    "Expected Outcome": "The dropdown menu area displays the current assessment title in its default, closed state, appearing 'Filled'.",
+    "Pass Criteria": "The dropdown displays the title and appears 'Filled' by default.",
+    "Fail Criteria": "The dropdown state is incorrect.",
+    "Priority": "Low",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-09",
+    "Title": "Validate whether the assessment title dropdown menu expands on hover.",
+    "Preconditions": "Admin is on the edit page for an assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Hover the mouse cursor over the assessment title dropdown menu area."
+    ],
+    "Expected Outcome": "The dropdown area visually changes to indicate a hover state.",
+    "Pass Criteria": "The dropdown displays a distinct hover state.",
+    "Fail Criteria": "The dropdown does not react visually to hover.",
+    "Priority": "Low",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-10",
+    "Title": "Validate whether the assessment title dropdown menu opens correctly on click.",
+    "Preconditions": "Admin is on the edit page for an assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Click on the assessment title dropdown menu area."
+    ],
+    "Expected Outcome": "The dropdown menu opens, displaying a list of other available assessments.",
+    "Pass Criteria": "The dropdown menu opens and lists other assessments.",
+    "Fail Criteria": "The dropdown menu does not open or is empty.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-11",
+    "Title": "Validate whether the \"Save Changes\" button is disabled by default.",
+    "Preconditions": "Admin is on the edit page for an assessment, and no changes have been made.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Observe the \"Save Changes\" button in the navigation panel."
+    ],
+    "Expected Outcome": "The \"Save Changes\" button is visually disabled and not clickable.",
+    "Pass Criteria": "The \"Save Changes\" button is disabled.",
+    "Fail Criteria": "The \"Save Changes\" button is enabled.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-12",
+    "Title": "Validate whether the \"Save Changes\" button becomes enabled after making a valid edit.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. The \"Save Changes\" button is disabled.",
+    "Test Data": "A single character change to the Assessment Name field.",
+    "Test Execution Steps": [
+      "1. Edit the Assessment Name field (e.g., add a character).",
+      "2. Observe the state of the \"Save Changes\" button."
+    ],
+    "Expected Outcome": "The \"Save Changes\" button becomes visually enabled and clickable.",
+    "Pass Criteria": "The \"Save Changes\" button changes from disabled to enabled.",
+    "Fail Criteria": "The \"Save Changes\" button remains disabled.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-13",
+    "Title": "Validate whether the \"Cancel\" button is always enabled.",
+    "Preconditions": "Admin is on the edit page for an assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Observe the \"Cancel\" button in the navigation panel when no changes are made.",
+      "2. Make an edit (e.g., change name).",
+      "3. Observe the state of the \"Cancel\" button after the edit."
+    ],
+    "Expected Outcome": "The \"Cancel\" button is always visually enabled and clickable regardless of whether changes have been made.",
+    "Pass Criteria": "The \"Cancel\" button is enabled in both states.",
+    "Fail Criteria": "The \"Cancel\" button is disabled at any point.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-14",
+    "Title": "Validate whether clicking \"Cancel\" triggers the confirmation modal when changes are unsaved.",
+    "Preconditions": "Admin is on the edit page for an assessment and has made unsaved changes.",
+    "Test Data": "Unsaved change (e.g., modified Assessment Name).",
+    "Test Execution Steps": [
+      "1. Make an edit to the assessment (e.g., change name).",
+      "2. Click the \"Cancel\" button."
+    ],
+    "Expected Outcome": "A confirmation modal appears asking the user to discard changes.",
+    "Pass Criteria": "The confirmation modal is displayed.",
+    "Fail Criteria": "The modal is not displayed, and the user is either taken back without saving or nothing happens.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-15",
+    "Title": "Validate whether clicking the \"back\" icon triggers the confirmation modal when changes are unsaved.",
+    "Preconditions": "Admin is on the edit page for an assessment and has made unsaved changes.",
+    "Test Data": "Unsaved change (e.g., modified Assessment Instructions).",
+    "Test Execution Steps": [
+      "1. Make an edit to the assessment (e.g., change instructions).",
+      "2. Click the \"back\" icon (assuming it's part of the navigation panel)."
+    ],
+    "Expected Outcome": "A confirmation modal appears asking the user to discard changes.",
+    "Pass Criteria": "The confirmation modal is displayed.",
+    "Fail Criteria": "The modal is not displayed, and the user is either taken back without saving or nothing happens.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-16",
+    "Title": "Validate whether confirming \"Discard Changes\" in the modal prevents saving and displays a failure toast.",
+    "Preconditions": "Admin is on the edit page with unsaved changes, and the confirmation modal is displayed (e.g., triggered by clicking Cancel).",
+    "Test Data": "Unsaved changes.",
+    "Test Execution Steps": [
+      "1. Click \"Cancel\" (or Back icon/other tab) to trigger the modal.",
+      "2. In the confirmation modal, click the \"Discard Changes\" or confirmation button.",
+      "3. Observe the screen and check for toast messages."
+    ],
+    "Expected Outcome": "The modal closes, the unsaved changes are not applied, the user is navigated away (e.g., back to listing), and a failure toast message \"Failed to save changes\" appears.",
+    "Pass Criteria": "Modal closes, changes are not saved, user navigates away, and failure toast appears.",
+    "Fail Criteria": "Changes are saved, user stays on page, no toast, or incorrect toast appears.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-17",
+    "Title": "Validate whether cancelling \"Discard Changes\" in the modal keeps the user on the edit page.",
+    "Preconditions": "Admin is on the edit page with unsaved changes, and the confirmation modal is displayed (e.g., triggered by clicking Cancel).",
+    "Test Data": "Unsaved changes.",
+    "Test Execution Steps": [
+      "1. Click \"Cancel\" (or Back icon/other tab) to trigger the modal.",
+      "2. In the confirmation modal, click the \"Cancel\" or negation button.",
+      "3. Observe the screen."
+    ],
+    "Expected Outcome": "The modal closes, and the user remains on the current edit assessment page with their unsaved changes still present.",
+    "Pass Criteria": "Modal closes, and user remains on the page with changes.",
+    "Fail Criteria": "Modal closes, and user is navigated away or changes are lost.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-18",
+    "Title": "Validate whether successfully saving changes displays a success toast message.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment, has made valid changes, and the \"Save Changes\" button is enabled.",
+    "Test Data": "Valid edits (e.g., new name, instructions).",
+    "Test Execution Steps": [
+      "1. Make valid edits to the assessment details (e.g., change name).",
+      "2. Click the \"Save Changes\" button.",
+      "3. Observe the bottom right of the screen."
+    ],
+    "Expected Outcome": "A success toast message \"Changes saved successfully\" appears on the bottom right.",
+    "Pass Criteria": "The success toast message is displayed correctly.",
+    "Fail Criteria": "No toast message appears, or an incorrect message is displayed.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-19",
+    "Title": "Validate whether successfully saving changes keeps the user on the edit page with updated details.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment, has made valid changes, and the \"Save Changes\" button is enabled.",
+    "Test Data": "Valid edits (e.g., new name \"Assessment Alpha Updated\").",
+    "Test Execution Steps": [
+      "1. Make valid edits (e.g., change name to \"Assessment Alpha Updated\").",
+      "2. Click the \"Save Changes\" button.",
+      "3. Observe the page after the save operation completes."
+    ],
+    "Expected Outcome": "The user remains on the same edit assessment page, and the displayed details (e.g., name) reflect the changes made.",
+    "Pass Criteria": "User stays on the page, and displayed details are updated.",
+    "Fail Criteria": "User is navigated away, or displayed details are not updated.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-20",
+    "Title": "Validate whether an updated assessment moves to the top of the assessments listing page after saving.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment, has made valid changes and saved successfully. There are multiple assessments in the listing.",
+    "Test Data": "Valid edits saved successfully.",
+    "Test Execution Steps": [
+      "1. Make valid edits and save the assessment.",
+      "2. Navigate back to the assessment listing page (e.g., using the \"back\" icon or navigation menu if no unsaved changes).",
+      "3. Observe the order of assessments in the listing."
+    ],
+    "Expected Outcome": "The assessment that was just edited and saved appears at the top of the assessment listing.",
+    "Pass Criteria": "The updated assessment is listed first.",
+    "Fail Criteria": "The updated assessment is not at the top of the list.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-21",
+    "Title": "Validate whether an Assigned assessment's Name field is read-only.",
+    "Preconditions": "Admin is on the edit page for an Assigned assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Locate the Assessment Name field for the Assigned assessment.",
+      "2. Attempt to click or type in the field."
+    ],
+    "Expected Outcome": "The Assessment Name field is displayed but cannot be edited.",
+    "Pass Criteria": "The Name field is read-only.",
+    "Fail Criteria": "The Name field is editable.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-22",
+    "Title": "Validate whether an Assigned assessment's Instructions field is read-only.",
+    "Preconditions": "Admin is on the edit page for an Assigned assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Locate the Assessment Instructions field for the Assigned assessment.",
+      "2. Attempt to click or type in the field."
+    ],
+    "Expected Outcome": "The Assessment Instructions field is displayed but cannot be edited.",
+    "Pass Criteria": "The Instructions field is read-only.",
+    "Fail Criteria": "The Instructions field is editable.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-23",
+    "Title": "Validate whether categories in an Assigned assessment are read-only.",
+    "Preconditions": "Admin is on the edit page for an Assigned assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Locate the Categories section.",
+      "2. Attempt to expand a category, edit a question weightage, or delete a question."
+    ],
+    "Expected Outcome": "Categories and their contents (questions, weightage, delete icons) are displayed but are not interactive or editable.",
+    "Pass Criteria": "Categories and questions within an Assigned assessment are read-only.",
+    "Fail Criteria": "Categories or questions can be modified.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-24",
+    "Title": "Validate whether the \"Assigned to\" field is displayed for Assigned assessments.",
+    "Preconditions": "Admin is on the edit page for an Assigned assessment.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Observe the assessment details section."
+    ],
+    "Expected Outcome": "An additional field labeled \"Assigned to\" is displayed, showing the number of cycles the assessment is assigned to.",
+    "Pass Criteria": "The \"Assigned to\" field is visible.",
+    "Fail Criteria": "The \"Assigned to\" field is missing.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-25",
+    "Title": "Validate whether hovering over the \"Assigned to\" field displays cycle names.",
+    "Preconditions": "Admin is on the edit page for an Assigned assessment. The \"Assigned to\" field is visible.",
+    "Test Data": "An Assigned assessment linked to multiple feedback cycles (e.g., \"Cycle A\", \"Cycle B\").",
+    "Test Execution Steps": [
+      "1. Hover the mouse cursor over the \"Assigned to\" field."
+    ],
+    "Expected Outcome": "A tooltip appears displaying the names of the feedback cycles the assessment is assigned to (e.g., \"Cycle A, Cycle B\").",
+    "Pass Criteria": "A tooltip with correct cycle names appears on hover.",
+    "Fail Criteria": "No tooltip appears, or the tooltip displays incorrect information.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-26",
+    "Title": "Validate whether hovering over the Assessment Instructions field displays the full instructions.",
+    "Preconditions": "Admin is on the edit page for an assessment. The Assessment Instructions field contains text that might be truncated.",
+    "Test Data": "Assessment Instructions text that is long enough to potentially be truncated.",
+    "Test Execution Steps": [
+      "1. Hover the mouse cursor over the Assessment Instructions field."
+    ],
+    "Expected Outcome": "A tooltip appears displaying the full text of the Assessment Instructions.",
+    "Pass Criteria": "A tooltip with the complete instructions text appears on hover.",
+    "Fail Criteria": "No tooltip appears, or the tooltip is incomplete/incorrect.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-27",
+    "Title": "Validate whether categories are displayed under the categories section with a count indicator.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment with multiple categories.",
+    "Test Data": "An assessment with 3 categories.",
+    "Test Execution Steps": [
+      "1. Scroll down to the Categories section.",
+      "2. Observe the display of categories."
+    ],
+    "Expected Outcome": "All categories are listed, and a count indicator (e.g., \"Categories (3)\") is displayed showing the total number of categories.",
+    "Pass Criteria": "Categories are listed correctly with an accurate count indicator.",
+    "Fail Criteria": "Categories are missing, or the count is incorrect/missing.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-28",
+    "Title": "Validate whether the category count indicator updates dynamically when a category is added (Not covered by this story, but related).",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment.",
+    "Test Data": "N/A (Requires functionality to add categories, which is out of scope but mentioned for dynamic update validation).",
+    "Test Execution Steps": [
+      "N/A (Cannot be tested based on provided story scope)."
+    ],
+    "Expected Outcome": "N/A.\n- Pass/Fail Criteria: N/A.\n- Priority: Low\n- References: JTCGT-3\n\nTC-29: Validate whether clicking a category expands it and collapses the previously expanded category.\n- Preconditions: Admin is on the edit page for an Unassigned assessment with multiple categories. No categories are currently expanded.\n- Test Data: Multiple categories (e.g., \"Category A\", \"Category B\").\n- Test Execution Steps:\n  1. Click on \"Category A\".\n  2. Observe the expansion state.\n  3. Click on \"Category B\".\n  4. Observe the expansion state of both categories.\n- Expected Outcome: Clicking \"Category A\" expands it. Clicking \"Category B\" expands \"Category B\" and collapses \"Category A\". Only one category is expanded at a time.",
+    "Pass Criteria": "Categories expand and collapse as expected, with only one open at a time.",
+    "Fail Criteria": "Multiple categories remain open, or clicking doesn't expand/collapse correctly.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-30",
+    "Title": "Validate whether questions within an expanded category are displayed correctly.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded.",
+    "Test Data": "A category with multiple questions, each having a title and weightage.",
+    "Test Execution Steps": [
+      "1. Expand a category containing questions.",
+      "2. Observe the display of questions within the category."
+    ],
+    "Expected Outcome": "Each question is displayed as a card showing its title, assigned weightage, and a delete icon.",
+    "Pass Criteria": "Questions are displayed correctly with all required information.",
+    "Fail Criteria": "Questions are missing, or information (title, weightage, icon) is incorrect/missing.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-31",
+    "Title": "Validate whether question titles exceeding width are truncated with ellipses.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category contains a question with a very long title.",
+    "Test Data": "A question title like \"This is a very very very very very very very very very very very very very very very long question title that exceeds the 600px text box width limit\".",
+    "Test Execution Steps": [
+      "1. Expand the category containing the long question title.",
+      "2. Observe the display of the question title on the card."
+    ],
+    "Expected Outcome": "The question title is truncated, ending with \"...\".",
+    "Pass Criteria": "The long question title is truncated correctly with ellipses.",
+    "Fail Criteria": "The title is not truncated, or truncation is incorrect.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-32",
+    "Title": "Validate whether hovering over a truncated question title displays the full title in a tooltip.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category contains a question with a truncated title.",
+    "Test Data": "A question title truncated with \"...\".",
+    "Test Execution Steps": [
+      "1. Expand the category containing the truncated title.",
+      "2. Hover the mouse cursor over the truncated question title."
+    ],
+    "Expected Outcome": "A tooltip appears displaying the complete, non-truncated question title.",
+    "Pass Criteria": "A tooltip with the full title appears on hover.",
+    "Fail Criteria": "No tooltip appears, or the tooltip is incorrect/incomplete.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-33",
+    "Title": "Validate whether question weightage fields are editable for an Unassigned assessment.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded showing questions.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Locate the weightage field for a question.",
+      "2. Attempt to click or type in the field."
+    ],
+    "Expected Outcome": "The weightage field is editable and allows input.",
+    "Pass Criteria": "The weightage field can be edited.",
+    "Fail Criteria": "The weightage field is read-only.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-34",
+    "Title": "Validate whether question weightage field accepts a valid whole number (1-100).",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded showing questions. The weightage field is editable.",
+    "Test Data": "Valid whole number input: 50.",
+    "Test Execution Steps": [
+      "1. Locate a question weightage field.",
+      "2. Enter \"50\" into the field.",
+      "3. Observe the field's behavior."
+    ],
+    "Expected Outcome": "The field accepts \"50\" and displays it correctly.",
+    "Pass Criteria": "The field accepts and displays the valid number.",
+    "Fail Criteria": "The field rejects or modifies the valid number.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-35",
+    "Title": "Validate whether question weightage field rejects input outside the 1-100 range (Below 1).",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. The weightage field is editable.",
+    "Test Data": "Invalid number input: 0.",
+    "Test Execution Steps": [
+      "1. Locate a question weightage field.",
+      "2. Attempt to enter \"0\" into the field."
+    ],
+    "Expected Outcome": "The field rejects the input, prevents entry, or displays a validation error message.",
+    "Pass Criteria": "The field prevents entry of 0 or flags it as invalid.",
+    "Fail Criteria": "The field accepts 0.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-36",
+    "Title": "Validate whether question weightage field rejects input outside the 1-100 range (Above 100).",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. The weightage field is editable.",
+    "Test Data": "Invalid number input: 101.",
+    "Test Execution Steps": [
+      "1. Locate a question weightage field.",
+      "2. Attempt to enter \"101\" into the field."
+    ],
+    "Expected Outcome": "The field rejects the input, prevents entry, or displays a validation error message.",
+    "Pass Criteria": "The field prevents entry of 101 or flags it as invalid.",
+    "Fail Criteria": "The field accepts 101.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-37",
+    "Title": "Validate whether question weightage field rejects decimal input.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. The weightage field is editable.",
+    "Test Data": "Invalid decimal input: 50.5.",
+    "Test Execution Steps": [
+      "1. Locate a question weightage field.",
+      "2. Attempt to enter \"50.5\" into the field."
+    ],
+    "Expected Outcome": "The field rejects the decimal, removes the decimal point, or displays a validation error message.",
+    "Pass Criteria": "The field prevents or rejects decimal input.",
+    "Fail Criteria": "The field accepts decimal input.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-38",
+    "Title": "Validate whether non-numeric characters are restricted at input level in the weightage field.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. The weightage field is editable.",
+    "Test Data": "Non-numeric input: \"abc\".",
+    "Test Execution Steps": [
+      "1. Locate a question weightage field.",
+      "2. Attempt to type \"abc\" into the field."
+    ],
+    "Expected Outcome": "The field prevents the entry of non-numeric characters.",
+    "Pass Criteria": "Non-numeric characters cannot be entered.",
+    "Fail Criteria": "Non-numeric characters can be entered.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-39",
+    "Title": "Validate whether deleting a question removes it from the category.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions.",
+    "Test Data": "A question card with a delete icon.",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Locate a question card.",
+      "3. Click the delete icon on the question card.",
+      "4. Observe the list of questions in the category."
+    ],
+    "Expected Outcome": "The question card is removed from the displayed list of questions within the category.",
+    "Pass Criteria": "The question is removed from the display.",
+    "Fail Criteria": "The question remains displayed after clicking delete.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-40",
+    "Title": "Validate whether deleting a question updates the category question count.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions.",
+    "Test Data": "A category with an initial count (e.g., 4 questions).",
+    "Test Execution Steps": [
+      "1. Expand a category with a known number of questions.",
+      "2. Note the category count indicator.",
+      "3. Click the delete icon on one question.",
+      "4. Observe the category count indicator."
+    ],
+    "Expected Outcome": "The category count indicator decreases by 1.",
+    "Pass Criteria": "The category count updates correctly after deletion.",
+    "Fail Criteria": "The category count does not change or updates incorrectly.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-41",
+    "Title": "Validate whether deleting a question updates the overall category weightage display.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions, and their weightages sum to 100%.",
+    "Test Data": "A category with questions summing to 100%.",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Note the displayed overall category weightage (should be 100%).",
+      "3. Delete a question.",
+      "4. Observe the overall category weightage display."
+    ],
+    "Expected Outcome": "The overall category weightage display updates to reflect the removal of the question's weightage (e.g., changes from 100% to something less). An error message indicating weightage is not 100% might appear.",
+    "Pass Criteria": "The overall category weightage display updates correctly.",
+    "Fail Criteria": "The overall weightage display does not change.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-42",
+    "Title": "Validate whether an error message is displayed if overall category weightage is less than 100% after editing.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded.",
+    "Test Data": "Edit question weightages so the sum for a category is less than 100% (e.g., 80%).",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Edit question weightages within that category so they sum to less than 100%.",
+      "3. Observe the area where the overall weightage is displayed."
+    ],
+    "Expected Outcome": "An error message indicating the category weightage must sum to 100% is displayed.",
+    "Pass Criteria": "The correct error message appears.",
+    "Fail Criteria": "No error message appears, or an incorrect message is shown.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-43",
+    "Title": "Validate whether an error message is displayed if overall category weightage is greater than 100% after editing.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded.",
+    "Test Data": "Edit question weightages so the sum for a category is greater than 100% (e.g., 110%).",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Edit question weightages within that category so they sum to greater than 100%.",
+      "3. Observe the area where the overall weightage is displayed."
+    ],
+    "Expected Outcome": "An error message indicating the category weightage must sum to 100% is displayed.",
+    "Pass Criteria": "The correct error message appears.",
+    "Fail Criteria": "No error message appears, or an incorrect message is shown.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-44",
+    "Title": "Validate whether the \"Save Changes\" button is disabled if the overall category weightage is not 100%.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded.",
+    "Test Data": "Edit question weightages so the sum for a category is not 100% (e.g., 90%).",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Edit question weightages so they sum to less than 100%.",
+      "3. Observe the state of the \"Save Changes\" button."
+    ],
+    "Expected Outcome": "The \"Save Changes\" button is disabled.",
+    "Pass Criteria": "The \"Save Changes\" button is disabled when weightage is not 100%.",
+    "Fail Criteria": "The \"Save Changes\" button is enabled despite incorrect weightage sum.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-45",
+    "Title": "Validate whether the \"Save Changes\" button becomes enabled when overall category weightage is corrected to 100%.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category weightage is not 100%, and the \"Save Changes\" button is disabled.",
+    "Test Data": "Edit question weightages to correct the sum to exactly 100%.",
+    "Test Execution Steps": [
+      "1. Edit question weightages so they sum to less than 100% (button disabled).",
+      "2. Edit weightages again to make the sum exactly 100%.",
+      "3. Observe the state of the \"Save Changes\" button."
+    ],
+    "Expected Outcome": "The \"Save Changes\" button becomes enabled.",
+    "Pass Criteria": "The \"Save Changes\" button becomes enabled when weightage is corrected.",
+    "Fail Criteria": "The \"Save Changes\" button remains disabled.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-46",
+    "Title": "Validate switching to a different assessment via dropdown without unsaved changes.",
+    "Preconditions": "Admin is on the edit page for Assessment A. No changes have been made. Multiple other assessments exist (e.g., Assessment B).",
+    "Test Data": "Assessment A (current), Assessment B (target).",
+    "Test Execution Steps": [
+      "1. Click the assessment title dropdown in the navigation panel.",
+      "2. Select \"Assessment B\" from the list.",
+      "3. Observe the page transition."
+    ],
+    "Expected Outcome": "The user is navigated directly to the edit page for Assessment B without a confirmation modal.",
+    "Pass Criteria": "User is navigated to Assessment B's edit page without a modal.",
+    "Fail Criteria": "A modal appears, or navigation fails.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-47",
+    "Title": "Validate switching to a different assessment via dropdown triggers confirmation modal with unsaved changes.",
+    "Preconditions": "Admin is on the edit page for Assessment A. Unsaved changes have been made. Multiple other assessments exist (e.g., Assessment B).",
+    "Test Data": "Unsaved changes on Assessment A, Assessment B (target).",
+    "Test Execution Steps": [
+      "1. Make an edit to Assessment A (e.g., change name).",
+      "2. Click the assessment title dropdown in the navigation panel.",
+      "3. Select \"Assessment B\" from the list.",
+      "4. Observe the screen."
+    ],
+    "Expected Outcome": "A confirmation modal appears asking the user to discard changes on Assessment A before switching.",
+    "Pass Criteria": "The confirmation modal is displayed.",
+    "Fail Criteria": "The modal is not displayed, and user is either navigated away or stays on Assessment A.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-48",
+    "Title": "Validate confirming discard changes in modal when switching assessments navigates to new assessment.",
+    "Preconditions": "Admin is on the edit page for Assessment A with unsaved changes. The confirmation modal is displayed (triggered by attempting to switch to Assessment B).",
+    "Test Data": "Unsaved changes on Assessment A, Assessment B (target).",
+    "Test Execution Steps": [
+      "1. Attempt to switch to Assessment B via dropdown, triggering the modal.",
+      "2. In the confirmation modal, click the \"Discard Changes\" or confirmation button.",
+      "3. Observe the page transition."
+    ],
+    "Expected Outcome": "The modal closes, changes on Assessment A are not saved, and the user is navigated to the edit page for Assessment B.",
+    "Pass Criteria": "Modal closes, changes on A are discarded, and user is on Assessment B's page.",
+    "Fail Criteria": "Changes on A are saved, user stays on A, or user navigates incorrectly.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-49",
+    "Title": "Validate cancelling discard changes in modal when switching assessments keeps user on current assessment.",
+    "Preconditions": "Admin is on the edit page for Assessment A with unsaved changes. The confirmation modal is displayed (triggered by attempting to switch to Assessment B).",
+    "Test Data": "Unsaved changes on Assessment A, Assessment B (target).",
+    "Test Execution Steps": [
+      "1. Attempt to switch to Assessment B via dropdown, triggering the modal.",
+      "2. In the confirmation modal, click the \"Cancel\" or negation button.",
+      "3. Observe the screen."
+    ],
+    "Expected Outcome": "The modal closes, and the user remains on the edit page for Assessment A with their unsaved changes still present.",
+    "Pass Criteria": "Modal closes, user stays on Assessment A's page with changes.",
+    "Fail Criteria": "User is navigated away or changes are lost.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-50",
+    "Title": "Validate attempting to save with empty required fields keeps button disabled (Assuming Name is required).",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. The Assessment Name field is empty (or made empty).",
+    "Test Data": "Empty Assessment Name field.",
+    "Test Execution Steps": [
+      "1. Ensure the Assessment Name field is empty.",
+      "2. Make another valid edit (e.g., change instructions) to potentially enable the button.",
+      "3. Observe the state of the \"Save Changes\" button."
+    ],
+    "Expected Outcome": "The \"Save Changes\" button remains disabled because a required field (Name) is empty.",
+    "Pass Criteria": "The Save button is disabled due to the empty required field.",
+    "Fail Criteria": "The Save button becomes enabled despite the empty required field.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-51",
+    "Title": "Validate updating Assessment Name with valid characters.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment.",
+    "Test Data": "Valid name: \"Assessment with Numbers 123!\".",
+    "Test Execution Steps": [
+      "1. Edit the Assessment Name field.",
+      "2. Enter \"Assessment with Numbers 123!\".",
+      "3. Observe the field input."
+    ],
+    "Expected Outcome": "The field accepts the input correctly.",
+    "Pass Criteria": "Valid characters are accepted.",
+    "Fail Criteria": "Valid characters are rejected.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-52",
+    "Title": "Validate updating Assessment Instructions with special characters.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment.",
+    "Test Data": "Instructions with special characters: \"Read instructions carefully @#$%^&*()_+\".",
+    "Test Execution Steps": [
+      "1. Edit the Assessment Instructions field.",
+      "2. Enter \"Read instructions carefully @#$%^&*()_+\".",
+      "3. Observe the field input."
+    ],
+    "Expected Outcome": "The field accepts the input correctly.",
+    "Pass Criteria": "Special characters are accepted.",
+    "Fail Criteria": "Special characters are rejected.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-53",
+    "Title": "Validate saving changes after only modifying question weightages (summing to 100%).",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category weightage sums to 100%.",
+    "Test Data": "Modified question weightages within a category, still summing to 100%.",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Modify the weightage of questions ensuring the total sum remains 100%.",
+      "3. Click \"Save Changes\".",
+      "4. Observe the toast message and page state."
+    ],
+    "Expected Outcome": "A success toast appears, and the user remains on the page with the new weightages saved.",
+    "Pass Criteria": "Save is successful, toast appears, user stays on page.",
+    "Fail Criteria": "Save fails, incorrect toast, or user navigates away.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-54",
+    "Title": "Validate attempting to save changes when server error occurs.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment, has made valid changes, and the \"Save Changes\" button is enabled. (Requires simulating a server error).",
+    "Test Data": "Valid edits.",
+    "Test Execution Steps": [
+      "1. Make valid edits.",
+      "2. Click the \"Save Changes\" button.",
+      "3. (Simulate server error response).",
+      "4. Observe the screen and check for toast messages."
+    ],
+    "Expected Outcome": "A failure toast message \"Failed to save changes\" appears on the bottom right. The user remains on the edit page with unsaved changes.",
+    "Pass Criteria": "Failure toast appears, and user remains on the page with changes.",
+    "Fail Criteria": "Success toast appears, user navigates away, or no toast appears.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-55",
+    "Title": "Validate category weightage display next to each category header.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment with multiple categories.",
+    "Test Data": "Categories with questions assigned weightages.",
+    "Test Execution Steps": [
+      "1. Scroll to the Categories section.",
+      "2. Observe the display next to each category name (when collapsed or expanded)."
+    ],
+    "Expected Outcome": "The calculated sum of question weightages for that category is displayed next to the category name (e.g., \"Category A (100%)\").",
+    "Pass Criteria": "Category weightage is displayed correctly next to each category header.",
+    "Fail Criteria": "Weightage display is missing or incorrect.",
+    "Priority": "Medium",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-56",
+    "Title": "Validate the overall assessment structure display after saving changes.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment, has made valid changes (e.g., name, instructions, question weightages), and saved successfully.",
+    "Test Data": "Saved changes including name, instructions, and question weightages.",
+    "Test Execution Steps": [
+      "1. Make various valid edits and save.",
+      "2. Remain on the page and observe the displayed assessment details, categories, and questions."
+    ],
+    "Expected Outcome": "The page continues to display the assessment structure, and all the saved changes (Name, Instructions, updated question weightages, deleted questions) are reflected accurately.",
+    "Pass Criteria": "All saved changes are correctly displayed on the edit page.",
+    "Fail Criteria": "Some or all saved changes are not reflected.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-57",
+    "Title": "Validate that the dropdown selected state is displayed correctly after switching assessments.",
+    "Preconditions": "Admin is on the edit page for an assessment. Multiple assessments are available in the dropdown.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Click the assessment title dropdown.",
+      "2. Select a different assessment from the list.",
+      "3. Observe the appearance of the dropdown area after the new assessment page loads."
+    ],
+    "Expected Outcome": "The dropdown area displays the title of the newly selected assessment and appears in the \"Selected\" state according to the design.",
+    "Pass Criteria": "The dropdown displays the new title and is in the correct \"Selected\" state.",
+    "Fail Criteria": "The dropdown state is incorrect after switching.",
+    "Priority": "Low",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-58",
+    "Title": "Validate that the dropdown hover state is displayed correctly when the dropdown is open.",
+    "Preconditions": "Admin is on the edit page for an assessment. The assessment title dropdown is open.",
+    "Test Data": "N/A.",
+    "Test Execution Steps": [
+      "1. Click the assessment title dropdown to open it.",
+      "2. Hover the mouse cursor over an item in the open dropdown list."
+    ],
+    "Expected Outcome": "The specific item being hovered over in the open dropdown list displays a distinct hover state according to the design.",
+    "Pass Criteria": "Items in the open dropdown list display the correct hover state.",
+    "Fail Criteria": "Items do not display a hover state or display an incorrect one.",
+    "Priority": "Low",
+    "References": "JTCGT-3"
+  },
+  {
+    "Test Case ID": "TC-59",
+    "Title": "Validate that the category count indicator updates dynamically when a question is deleted.",
+    "Preconditions": "Admin is on the edit page for an Unassigned assessment. A category is expanded with multiple questions.",
+    "Test Data": "A category with an initial question count (e.g., 5 questions).",
+    "Test Execution Steps": [
+      "1. Expand a category.",
+      "2. Note the category count indicator next to the category name.",
+      "3. Delete one question from the category.",
+      "4. Observe the category count indicator."
+    ],
+    "Expected Outcome": "The category count indicator dynamically updates to reflect the decrease in the number of questions (e.g., changes from 5 to 4).",
+    "Pass Criteria": "The category count updates in real-time upon question deletion.",
+    "Fail Criteria": "The count does not update or updates incorrectly.",
+    "Priority": "High",
+    "References": "JTCGT-3"
+  }
+]

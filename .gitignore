@@ -1,3 +1,7 @@
 LLM Chat API Client.json
 LLM Chat API Client.json
 LLM Chat API Client.json
+
+# Ignore Python cache and env
+__pycache__/
+.env
