@@ -1,13 +1,14 @@
 import os
 import json
 import base64
+import re
 from typing import Dict, List
 from google.oauth2 import service_account
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.prompts import ChatPromptTemplate
 from llm import test_case_prompt
+from test_case_extractor import parser
 
-
+# Load service account credentials
 if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
     decoded_json = base64.b64decode(os.environ["GOOGLE_CREDENTIALS_BASE64"])
     credentials_info = json.loads(decoded_json)
@@ -15,17 +16,29 @@ if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
 else:
     raise EnvironmentError("Missing GOOGLE_CREDENTIALS_BASE64 environment variable.")
 
-
+# Initialize LLM
 llm_model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash-preview-04-17",
     credentials=credentials,
     convert_system_message_to_human=True
 )
 
-
 memory_store: Dict[str, List[Dict[str, str]]] = {}
 
-
+def extract_json_array(text: str) -> List[dict]:
+    """
+    Extracts a JSON array from the LLM-generated text.
+    Looks for the first array (`[...]`) and parses it.
+    """
+    try:
+        json_match = re.search(r"\[\s*{.*?}\s*]", text, re.DOTALL)
+        if not json_match:
+            raise ValueError("No JSON-like array found in the response.")
+        
+        json_text = json_match.group(0)
+        return json.loads(json_text)
+    except Exception as e:
+        raise ValueError(f"Failed to extract or parse test cases: {e}")
 
 async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_criteria=""):
     prompt = test_case_prompt.format(
@@ -33,16 +46,27 @@ async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_cr
         jira_id=jira_id,
         acceptance_criteria=acceptance_criteria
     )
+
     result = await llm_model.ainvoke(prompt)
-    
+    raw_output = result.content.strip()
+
+    try:
+        test_scenarios = parser.extract_test_scenarios(raw_output)
+        test_cases = parser.extract_test_cases(raw_output)
+        parsed_output = {
+            "testScenarios": test_scenarios,
+            "testCases": test_cases
+        }
+    except Exception as e:
+        raise ValueError(f"Test case generation failed: {e}")
+
     memory_store[jira_id] = [
         {"role": "system", "content": "You are a helpful assistant specialized in software testing."},
         {"role": "user", "content": prompt},
-        {"role": "ai", "content": result.content}
+        {"role": "ai", "content": raw_output}
     ]
-    return result.content
 
-
+    return parsed_output
 
 async def chat_with_contextual_llm(jira_id: str, message: str) -> str:
     if jira_id not in memory_store:
@@ -50,13 +74,7 @@ async def chat_with_contextual_llm(jira_id: str, message: str) -> str:
             {"role": "system", "content": "You are a helpful assistant specialized in software testing."}
         ]
 
-    # Append new user message to context
     memory_store[jira_id].append({"role": "user", "content": message})
-
-    # Invoke Gemini with full context
     response = await llm_model.ainvoke(memory_store[jira_id])
-
-    # Add model's response to memory
     memory_store[jira_id].append({"role": "ai", "content": response.content})
-
     return response.content

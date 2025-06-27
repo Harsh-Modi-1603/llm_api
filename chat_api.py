@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from llm_chat import (
     generate_test_cases_with_chat_model,
@@ -10,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict in production
+    allow_origins=["*"],  # In production, replace with actual domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,23 +33,33 @@ def root():
 @app.post("/chat-generate")
 async def generate_chat_test_cases(data: GenerationRequest):
     if not data.user_story or not data.jira_id:
-        return {"error": "Missing required fields"}
+        return JSONResponse(status_code=400, content={"error": "Missing required fields"})
 
     try:
-        content = await generate_test_cases_with_chat_model(
-            data.user_story, data.jira_id, data.acceptance_criteria
+        parsed_output = await generate_test_cases_with_chat_model(
+            data.user_story,
+            data.jira_id,
+            data.acceptance_criteria
         )
-        return {"testCases": content}
+
+        # Ensure the output includes both keys
+        return JSONResponse(content={
+            "testScenarios": parsed_output.get("testScenarios", []),
+            "testCases": parsed_output.get("testCases", [])
+        })
     except Exception as e:
-        return {"error": f"Test case generation failed: {str(e)}"}
+        return JSONResponse(status_code=500, content={"error": f"Test case generation failed: {str(e)}"})
 
 @app.post("/chat")
 async def chat(data: ChatRequest):
     if not data.message or not data.jira_id:
-        return {"error": "Missing required fields"}
+        return JSONResponse(status_code=400, content={"error": "Missing required fields"})
 
     try:
         response = await chat_with_contextual_llm(data.jira_id, data.message)
-        return {"response": response}
+        return JSONResponse(content={"response": response})
     except Exception as e:
-        return {"error": f"Chat failed: {str(e)}"}
+        return JSONResponse(status_code=500, content={"error": f"Chat failed: {str(e)}"})
+
+if __name__ == "__main__":
+    
