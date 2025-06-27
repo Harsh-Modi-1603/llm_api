@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with actual domain
+    allow_origins=["*"],  # Replace with your domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -42,7 +42,6 @@ async def generate_chat_test_cases(data: GenerationRequest):
             data.acceptance_criteria
         )
 
-        # Ensure the output includes both keys
         return JSONResponse(content={
             "testScenarios": parsed_output.get("testScenarios", []),
             "testCases": parsed_output.get("testCases", [])
@@ -60,6 +59,3 @@ async def chat(data: ChatRequest):
         return JSONResponse(content={"response": response})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"Chat failed: {str(e)}"})
-
-if __name__ == "__main__":
-    
