@@ -16,7 +16,6 @@ if "GOOGLE_CREDENTIALS_BASE64" in os.environ:
 else:
     raise EnvironmentError("Missing GOOGLE_CREDENTIALS_BASE64 environment variable.")
 
-# Initialize LLM
 llm_model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash-preview-04-17",
     credentials=credentials,
@@ -24,21 +23,6 @@ llm_model = ChatGoogleGenerativeAI(
 )
 
 memory_store: Dict[str, List[Dict[str, str]]] = {}
-
-def extract_json_array(text: str) -> List[dict]:
-    """
-    Extracts a JSON array from the LLM-generated text.
-    Looks for the first array (`[...]`) and parses it.
-    """
-    try:
-        json_match = re.search(r"\[\s*{.*?}\s*]", text, re.DOTALL)
-        if not json_match:
-            raise ValueError("No JSON-like array found in the response.")
-        
-        json_text = json_match.group(0)
-        return json.loads(json_text)
-    except Exception as e:
-        raise ValueError(f"Failed to extract or parse test cases: {e}")
 
 async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_criteria=""):
     prompt = test_case_prompt.format(
@@ -68,7 +52,7 @@ async def generate_test_cases_with_chat_model(user_story, jira_id, acceptance_cr
 
     return parsed_output
 
-async def chat_with_contextual_llm(jira_id: str, message: str) -> str:
+async def chat_with_contextual_llm(jira_id: str, message: str) -> dict:
     if jira_id not in memory_store:
         memory_store[jira_id] = [
             {"role": "system", "content": "You are a helpful assistant specialized in software testing."}
@@ -77,4 +61,15 @@ async def chat_with_contextual_llm(jira_id: str, message: str) -> str:
     memory_store[jira_id].append({"role": "user", "content": message})
     response = await llm_model.ainvoke(memory_store[jira_id])
     memory_store[jira_id].append({"role": "ai", "content": response.content})
-    return response.content
+
+    raw_output = response.content.strip()
+
+    try:
+        test_scenarios = parser.extract_test_scenarios(raw_output)
+        test_cases = parser.extract_test_cases(raw_output)
+        return {
+            "testScenarios": test_scenarios,
+            "testCases": test_cases
+        }
+    except Exception as e:
+        raise ValueError(f"Failed to extract structured test cases: {e}")

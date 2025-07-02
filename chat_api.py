@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace with your domain in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -55,7 +55,10 @@ async def chat(data: ChatRequest):
         return JSONResponse(status_code=400, content={"error": "Missing required fields"})
 
     try:
-        response = await chat_with_contextual_llm(data.jira_id, data.message)
-        return JSONResponse(content={"response": response})
+        parsed_output = await chat_with_contextual_llm(data.jira_id, data.message)
+        return JSONResponse(content={
+            "testScenarios": parsed_output.get("testScenarios", []),
+            "testCases": parsed_output.get("testCases", [])
+        })
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"Chat failed: {str(e)}"})
