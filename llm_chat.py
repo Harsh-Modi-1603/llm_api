@@ -58,7 +58,14 @@ async def chat_with_contextual_llm(jira_id: str, message: str) -> dict:
             {"role": "system", "content": "You are a helpful assistant specialized in software testing."}
         ]
 
-    memory_store[jira_id].append({"role": "user", "content": message})
+    # Append new message with strong system instruction to return structured format
+    instruction = (
+        "You must return your response strictly in JSON format with two keys: "
+        "`testScenarios` and `testCases`. No extra commentary or explanation."
+    )
+    memory_store[jira_id].append({"role": "user", "content": f"{instruction}\n\n{message}"})
+
+    # Invoke model with updated memory
     response = await llm_model.ainvoke(memory_store[jira_id])
     memory_store[jira_id].append({"role": "ai", "content": response.content})
 

@@ -56,6 +56,7 @@ async def chat(data: ChatRequest):
 
     try:
         parsed_output = await chat_with_contextual_llm(data.jira_id, data.message)
+
         return JSONResponse(content={
             "testScenarios": parsed_output.get("testScenarios", []),
             "testCases": parsed_output.get("testCases", [])
